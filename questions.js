@@ -28,7 +28,7 @@ const ZONES = [
       { q: 'Vanlig bordsalt (NaCl) holdes sammen av …', a: ['ionebindinger', 'kovalente bindinger', 'metallbindinger', 'hydrogenbindinger'], e: 'Klor har høyere elektronegativitet og tar elektronet fra natrium. Na⁺ og Cl⁻ tiltrekker hverandre.', p: 10 },
       { q: 'Hvordan beskrives en metallbinding?', a: ['Positive metallioner i en sky av elektroner', 'To atomer som deler ett elektronpar', 'Et positivt og et negativt ion som tiltrekker hverandre', 'Molekyler som henger sammen med magnetisme'], e: 'Metallatomene gir elektroner til «fellesskapet». De positive ionene holdes sammen av den negative elektronskyen.', p: 11 },
       { q: 'En reaksjon som produserer varme kalles …', a: ['eksoterm', 'endoterm', 'katalytisk', 'isolert'], e: 'Eksoterme reaksjoner gir fra seg varme, f.eks. forbrenning. Endoterme reaksjoner krever varme.', p: 11 },
-      { t: 'tf', q: 'Smelting og fordampning er eksempler på endoterme reaksjoner.', ans: true, e: 'Det stemmer. Både smelting og fordampning krever tilført energi.', p: 12 },
+      { t: 'tf', q: 'Smelting og fordampning er eksempler på endoterme reaksjoner.', ans: true, e: 'Både smelting og fordampning krever tilført energi.', p: 12 },
       { q: 'Omtrent hvor mange enheter (atomer/molekyler) er 1 mol?', a: ['6,022 · 10²³', '6,022 · 10¹²', '1 000 000', '12'], e: '1 mol er 602 214 076 000 000 000 000 000 enheter. Tallet er definert ut fra 12 gram karbon.', p: 12 },
       { q: 'Boudouard-reaksjonen: C + CO₂ ⇌ 2 CO (krever varme). Hva skjer når temperaturen øker?', a: ['Likevekten går mot høyre, og vi får mer CO', 'Likevekten går mot venstre, og vi får mer CO₂', 'Ingenting, en likevekt påvirkes ikke av temperatur', 'All CO forsvinner'], e: 'Reaksjonen er endoterm, så økt temperatur skyver den mot høyre (mer CO). Ved ca. 800 °C er CO og CO₂ i likevekt.', p: 13 },
       { q: 'Hvilken vei går Boudouard-reaksjonen (C + CO₂ ⇌ 2 CO) når trykket økes?', a: ['Mot venstre, siden med færrest mol gass', 'Mot høyre, siden med flest mol gass', 'Den stopper helt', 'Den påvirkes ikke'], e: 'Økt trykk skyver likevekten mot siden med færrest mol gass. Her er det 1 mol CO₂ mot 2 mol CO, så vi får mer CO₂ og C.', p: 13 },
@@ -38,7 +38,7 @@ const ZONES = [
       { q: 'Hvilket stoff gjør slaggen basisk?', a: ['Brent kalk (CaO)', 'SiO₂', 'P₂O₅', 'Al₂O₃'], e: 'Brent kalk gjør slaggen basisk, mens SiO₂ gjør den sur.', p: 15 },
       { q: 'Hvordan regnes basisiteten B2 ut?', a: ['%CaO / %SiO₂', '%CaO / (%SiO₂ + %Al₂O₃)', '%SiO₂ / %CaO', '%MgO / %CaO'], e: 'B2 = %CaO / %SiO₂. B3 tar også med Al₂O₃ i nevneren.', p: 15 },
       { q: 'I teorien gir mange lange oksidkjeder en slagg som er …', a: ['tyktflytende', 'tyntflytende', 'magnetisk', 'gjennomsiktig'], e: 'Lange oksidkjeder gir tyktflytende slagg, korte kjeder gir tyntflytende. CaO bryter opp kjedene.', p: 15 },
-      { t: 'tf', q: 'I praksis opplever vi at kalktilsats gjør slaggen tykkere, selv om CaO i teorien bryter opp oksidkjeder.', ans: true, e: 'Stemmer. Dette har med temperaturen og smeltepunktet til slaggen å gjøre.', p: 15 }
+      { t: 'tf', q: 'I praksis opplever vi at kalktilsats gjør slaggen tykkere, selv om CaO i teorien bryter opp oksidkjeder.', ans: true, e: 'Dette har med temperaturen og smeltepunktet til slaggen å gjøre.', p: 15 }
     ]
   },
   {
@@ -96,7 +96,7 @@ const ZONES = [
       { q: 'Hva er et overslag?', a: ['Strømmen fra elektrodene går andre veier enn ned i stålbadet', 'Slaggen koker over', 'Elektroden knekker', 'Stål spruter ut av slaggdøra'], e: 'Strømmen kan gå gjennom støv, urent vann, metallstøv eller sprut og ut i stein, mantel, hvelv eller overdel.', p: 24 },
       { q: 'Hvorfor støvsuges hvelvet under vedlikeholdsstanser?', a: ['For å redusere faren for overslag i støvet', 'For å spare elektroder', 'For å øke strålevarmen', 'For å få bedre slaggprøver'], e: 'Metallstøv leder strøm og kan gi overslag.', p: 24 },
       { q: 'Hva er den alvorligste følgen av et overslag i vannkjølte elementer (paneler, hvelv, conveyor)?', a: ['Vannlekkasje som kan kreve akutt stans', 'Litt mer elektrodeslitasje', 'Lavere P i stålet', 'Mørkere slagg'], e: 'Den ekstreme varmen kan brenne hull på vannkjølte elementer. Vann i et stålbad er livsfarlig.', p: 24 },
-      { t: 'tf', q: 'Vi har sett flere overslag etter at vi skrudde opp vannkjølingen på elektrodene.', ans: true, e: 'Stemmer. Mer vannkjøling reduserer elektrodeforbruket, men har gitt flere overslag.', p: 24 }
+      { t: 'tf', q: 'Vi har sett flere overslag etter at vi skrudde opp vannkjølingen på elektrodene.', ans: true, e: 'Mer vannkjøling reduserer elektrodeforbruket, men har gitt flere overslag.', p: 24 }
     ]
   },
   {
@@ -119,7 +119,7 @@ const ZONES = [
       { q: 'Hvilken gitterstruktur har martensitt?', a: ['BCT (romsentrert tetragonal)', 'FCC', 'BCC', 'Heksagonal'], e: 'BCT dannes ut fra to FCC-celler ved siden av hverandre når austenitt bråkjøles.', p: 26 },
       { q: 'Hvordan kjenner du igjen martensitt i mikroskopet?', a: ['På den karakteristiske nålestrukturen', 'På sebrastriper', 'På store, runde korn', 'Den er helt svart'], e: 'Nålestrukturen er typisk. Sebrastriper (lameller) er perlitt.', p: 26 },
       { q: 'Hvorfor er martensitt hardere enn stål med samme kjemi som er kjølt sakte?', a: ['Strukturen er påtvunget og full av indre spenninger', 'Den inneholder mer karbon', 'Den har større korn', 'Den er magnetisk'], e: 'Den «påtvungne» strukturen gir mye indre spenninger og gjør stålet hardere.', p: 26 },
-      { t: 'tf', q: 'Martensitt er en metastabil fase. Over lang tid vil strukturen bli mer og mer lik BCC.', ans: true, e: 'Stemmer. Atomene får tid til å flytte seg til posisjoner med mindre spenning.', p: 26 },
+      { t: 'tf', q: 'Martensitt er en metastabil fase. Over lang tid vil strukturen bli mer og mer lik BCC.', ans: true, e: 'Atomene får tid til å flytte seg til posisjoner med mindre spenning.', p: 26 },
       { q: 'Karbonatomer som ligger i mellomrommene i et jerngitter er et eksempel på …', a: ['interstitielle atomer', 'substitusjonelle atomer', 'vakanser', 'kantdislokasjoner'], e: 'Et interstitielt atom er lite nok til å få plass mellom atomene i gitteret.', p: 28 },
       { q: 'Hva er en vakans?', a: ['Et hull i gitteret der det mangler et atom', 'Et atom av et annet grunnstoff', 'En gassboble', 'En rad med atomer som stopper midt i krystallen'], e: 'Atomene rundt hullet trekker seg litt sammen og gir strekk i gitteret.', p: 28 },
       { q: 'Et atom av et annet grunnstoff som tar plassen til et jernatom i gitteret kalles …', a: ['substitusjonelt atom', 'interstitielt atom', 'presipitat', 'vakans'], e: 'Mindre atomer gir strekk i gitteret, større atomer gir sammenpressing.', p: 27 },
@@ -182,7 +182,7 @@ const ZONES = [
       'Korg brukes etter lang stans (for å danne stålsump), til skrap over 0,5 × 0,5 × 1,5 m eller 500 kg, til umagnetisk skrap og til skrap som floker seg.'
     ],
     qs: [
-      { t: 'tf', q: 'Mo er det eneste stålverket i Celsa Group som laster skrapet inn i ovnen med conveyor.', ans: true, e: 'Det stemmer, per i dag.', p: 39 },
+      { t: 'tf', q: 'Mo er det eneste stålverket i Celsa Group som laster skrapet inn i ovnen med conveyor.', ans: true, e: 'Per i dag er Mo alene om dette i konsernet.', p: 39 },
       { q: 'Omtrent hvor mye mindre strøm bruker stålovnen med conveyor enn med korg?', a: ['Ca. 10 %', 'Ca. 1 %', 'Ca. 50 %', 'Ingenting'], e: 'Forvarmingen gjør at skrapet trenger mindre energi for å smelte.', p: 39 },
       { q: 'Hva er normal temperatur på avgassen fra stålovnen?', a: ['Rundt 800 °C (opp mot 1200 °C)', 'Rundt 200 °C', 'Rundt 1600 °C', 'Rundt 3000 °C'], e: 'Avgassen ledes gjennom forvarmingsdelen og varmer skrapet før den går til renseanlegget.', p: 39 },
       { q: 'Hva er oppgaven til static seal?', a: ['Redusere falskluftinntak fra øst', 'Tette mellom ovn og øse', 'Kjøle hoodene', 'Veie skrapet'], e: 'Falskluft fra øst gir mer diffuse utslipp og kaldere luft i forvarmingen. Da blir forvarmingen dårligere og strømforbruket høyere.', p: 39 },
@@ -226,7 +226,7 @@ const ZONES = [
       { t: 'num', q: 'En slaggprøve fra TP26 har 23,8 % CaO og 13,7 % SiO₂. Hva er B2? (to desimaler)', ans: 1.74, tol: 0.02, unit: '', e: 'B2 = 23,8 / 13,7 ≈ 1,74. Det er litt under målet på 1,8.', p: 44 },
       { t: 'num', q: 'Samme prøve: 23,8 % CaO, 13,7 % SiO₂ og 5,7 % Al₂O₃. Hva er B3? (to desimaler)', ans: 1.23, tol: 0.02, unit: '', e: 'B3 = 23,8 / (13,7 + 5,7) = 23,8 / 19,4 ≈ 1,23. Nær målet på 1,25.', p: 45 },
       { q: 'Rent CaO har et smeltepunkt over 2600 °C. Hvorfor smelter det likevel i ovnen?', a: ['Det blandes med andre stoffer, som SiO₂, og da synker smeltepunktet', 'Lysbuen er alltid 2600 °C i hele ovnen', 'Det reagerer med fosfor', 'Det smelter ikke'], e: 'Et blandet stoff har nesten alltid lavere smeltepunkt enn det rene stoffet.', p: 45 },
-      { t: 'tf', q: 'Slagg og stål blander seg godt, omtrent som saft og vann.', ans: false, e: 'Nei, de oppfører seg som olje og vann. Slaggen legger seg på toppen hvis det ikke er kraftig omrøring.', p: 45 },
+      { t: 'tf', q: 'Slagg og stål blander seg godt, omtrent som saft og vann.', ans: false, e: 'De oppfører seg som olje og vann. Slaggen legger seg på toppen hvis det ikke er kraftig omrøring.', p: 45 },
       { q: 'I avfosforeringen havner fosforet til slutt bundet som …', a: ['kalsiumfosfat (bundet av CaO i slaggen)', 'FeS i stålet', 'P₂ gass', 'fosfor i elektrodene'], e: '2P + 5O → P₂O₅, som bindes av 3 CaO. Da er det vanskeligere for reaksjonen å gå tilbake.', p: 46 },
       { q: 'Hvorfor skal det slagges av FØR temperaturen økes før tapping?', a: ['Ellers kan fosforet reagere tilbake til stålet (fosforbom)', 'For å spare kalk', 'Fordi slaggen er magnetisk', 'For å øke FeO'], e: 'Ufullstendig avslagging betyr at det er for mye fosfor igjen i ovnen.', p: 47 },
       { q: 'Kjører man stålovnen med både kalk og dolomitt, havner man i …', a: ['slaggstrategi 2', 'slaggstrategi 1', 'slaggstrategi 3', 'ingen strategi'], e: 'Bare brent kalk gir strategi 1, mens tilsats av dolomitt gir strategi 2. Strategi 2 er minst følsom for endringer i FeO.', p: 48 },

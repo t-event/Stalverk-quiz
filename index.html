@@ -567,6 +567,7 @@
     fb.innerHTML = `
       <div class="feedback ${isCorrect ? 'good' : 'bad'}">
         <h3>${isCorrect ? '✅ ' + pick(GOOD) + ` <span class="gain">+${gain}</span>` : '💥 ' + pick(BAD) + (R.lives > 0 ? ` (${R.lives} ⚡ igjen)` : '')}</h3>
+        ${q.t === 'tf' ? `<p><b>Påstanden er ${q.ans ? 'sann' : 'usann'}.</b></p>` : ''}
         ${!isCorrect && (q.t === 'num' || q.t === 'order') ? `<p><b>Riktig svar:</b> ${correctText(q)}</p>` : ''}
         <p>${q.e}</p>
         <div class="ref">📖 Kompendiet s. ${q.p}</div>
