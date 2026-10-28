@@ -8,7 +8,7 @@ const INTRO = {
   cards: [
     {
       title: 'Hva lager vi?',
-      body: `<p>Stålverket i Mo i Rana smelter <b>stålskrap</b> og lager nytt stål av det. Hele 100 % av jernet vi putter i ovnen er skrap, og det gjør Celsa til Norges største gjenvinningsbedrift.</p>
+      body: `<p>Stålverket i Mo i Rana smelter <b>stålskrap</b> og lager nytt stål av det. Hele 100 % av jernet vi putter i ovnen er skrap, og det gjør 7 Steel til Norges største gjenvinningsbedrift.</p>
 <p>Produktet fra stålverket er <b>emner</b>, lange firkantede stålstenger. Emnene går videre til valseverket, som valser dem ut til armeringsstål.</p>`,
       check: 'skrap-0'
     },
@@ -16,7 +16,7 @@ const INTRO = {
       title: 'Veien gjennom verket',
       body: `<ol class="steps">
 <li><b>🧲 Skraplageret:</b> skrapet sorteres og lastes i kasser etter en oppskrift (resept).</li>
-<li><b>🛤️ Conveyoren:</b> et transportbånd rister skrapet inn i ovnen og forvarmer det med varm avgass.</li>
+<li><b>🛤️ Conveyoren:</b> rister skrapet inn i ovnen og forvarmer det med varm avgass.</li>
 <li><b>🔥 Stålovnen:</b> skrapet smeltes med strøm fra tre store elektroder.</li>
 <li><b>🫗 Tapping:</b> det flytende stålet helles over i en <b>øse</b>, en stor «bøtte» foret med varmebestandig stein.</li>
 <li><b>🧪 Øseovnen:</b> kjemien finjusteres etter det kunden krever, og temperaturen gjøres riktig.</li>
@@ -213,13 +213,13 @@ const LESSONS = {
   conveyor: [
     {
       title: 'Hvordan conveyoren fungerer',
-      body: `<p>Skrapet lastes på et langt bånd som rister det inn i stålovnen. På veien går det gjennom en <b>forvarmingsdel</b>, der varm avgass fra ovnen (ca. 800 °C) varmer skrapet og tørker bort vann og is.</p>
+      body: `<p>Skrapet lastes på conveyoren, som rister det inn i stålovnen. På veien går det gjennom en <b>forvarmingsdel</b>, der varm avgass fra ovnen (ca. 800 °C) varmer skrapet og tørker bort vann og is.</p>
 <p>Det gir ca. <b>10 % lavere strømforbruk</b> og mindre støv, fordi ovnslokket (hvelvet) kan bli liggende på.</p>`,
       check: 'conveyor-1'
     },
     {
       title: 'God lasting',
-      body: `<p>Én kasse er én charge, ca. <b>92 tonn</b>. Skrapet skal ligge <b>tett, men ikke for høyt</b>. Er det lastet for høyt, kan biter sette seg fast på veien inn til ovnen. En god blanding av store og små biter gjør at båndet kan gå roligere, og da får skrapet bedre tid til å varmes opp.</p>`,
+      body: `<p>Én kasse er én charge, ca. <b>92 tonn</b>. Skrapet skal ligge <b>tett, men ikke for høyt</b>. Er det lastet for høyt, kan biter sette seg fast på veien inn til ovnen. En god blanding av store og små biter gjør at conveyoren kan gå roligere, og da får skrapet bedre tid til å varmes opp.</p>`,
       check: 'conveyor-7'
     },
     {
@@ -496,7 +496,7 @@ const GLOSSARY = [
   ['B2 / B3', 'Tall som viser hvor basisk (og stiv) slaggen er. B2 = CaO / SiO₂.'],
   ['CE2', 'Karbonekvivalent: ett tall som viser hvor hardt og sveisbart stålet blir.'],
   ['Charge', 'Én porsjon stål, én ovnsfylling. Én skrapkasse (~92 tonn) blir én charge.'],
-  ['Conveyor', 'Transportbåndet som rister skrapet inn i stålovnen og forvarmer det.'],
+  ['Conveyor', 'Anlegget som rister skrapet inn i stålovnen og forvarmer det.'],
   ['Dekkmiddel', 'Isolerende stoff (vermikulitt) som strøs over stålet i fordeleren.'],
   ['Dunge', 'Haug med én bestemt skraptype i skraplageret.'],
   ['Dørken', 'Området og operatørene som flytter og klargjør øsene.'],

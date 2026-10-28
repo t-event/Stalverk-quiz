@@ -1,6 +1,6 @@
 # Stålverket – Smelteprøven 🔥
 
-Et quizspill for å lære stålverket, fra skraplageret til strengen. Spørsmålene er laget ut fra metallurgikurs-kompendiet (Celsa, 2. utg. 2024). Selve kompendiet ligger **ikke** i repoet.
+Et quizspill for å lære stålverket, fra skraplageret til strengen. Spørsmålene er laget ut fra metallurgikurs-kompendiet (7 Steel, 2. utg. 2024). Selve kompendiet ligger **ikke** i repoet.
 
 ## Slik spiller du
 Åpne `index.html` i nettleseren. Det trengs ingen installasjon. Spillet fungerer også med GitHub Pages.

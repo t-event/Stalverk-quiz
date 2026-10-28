@@ -142,7 +142,7 @@ const ZONES = [
       'Manganstål (>11 % Mn) er austenittisk (FCC) ned til romtemperatur og derfor <b>umagnetisk</b>. Det går til korg.'
     ],
     qs: [
-      { q: 'Hvor stor andel av jern- og ståltilførselen i stålovnen er stålskrap?', a: ['100 %', '50 %', '75 %', '90 %'], e: 'Celsa Armeringsstål er Norges største gjenvinningsbedrift. Alt jern og stål vi tilfører ovnen er skrap.', p: 29 },
+      { q: 'Hvor stor andel av jern- og ståltilførselen i stålovnen er stålskrap?', a: ['100 %', '50 %', '75 %', '90 %'], e: '7 Steel er Norges største gjenvinningsbedrift. Alt jern og stål vi tilfører ovnen er skrap.', p: 29 },
       { q: 'Hva er maks stykkvekt på skrap vi tar imot?', a: ['500 kg', '50 kg', '1 tonn', '5 tonn'], e: 'Leveringsbetingelsene sier at stykkvekten ikke skal være over 500 kg.', p: 29 },
       { q: 'Hvordan skal beholdere og tanker i skrapet være?', a: ['Åpne i begge ender', 'Tette og tomme', 'Fylt med vann', 'Klemt flate'], e: 'Tette beholdere kan eksplodere i ovnen. De skal være åpne i begge ender.', p: 29 },
       { q: 'Hvor mange skrapklasser har skraplageret?', a: ['8', '3', '12', '20'], e: 'Åtte skrapklasser, og noen av dem har flere kvaliteter for finsortering.', p: 30 },
@@ -175,7 +175,7 @@ const ZONES = [
     icon: '🛤️',
     pages: 's. 39–40',
     facts: [
-      'Mo er det <b>eneste</b> stålverket i Celsa Group som laster skrap med conveyor.',
+      'Conveyoren lar hvelvet bli liggende på, og det gir <b>mindre støv og røyk</b> enn korgkjøring.',
       'Forvarmingen gir ca. <b>10 % lavere strømforbruk</b> enn korg, og mindre støv og røyk, fordi hvelvet kan bli liggende på.',
       'Avgassen er ca. <b>800 °C</b>, men kan gå opp mot 1200 °C.',
       '<b>Static seal</b> hindrer falskluft fra øst.',
@@ -183,7 +183,7 @@ const ZONES = [
       'Korg brukes etter lang stans (for å danne stålsump), til skrap over 0,5 × 0,5 × 1,5 m eller 500 kg, til umagnetisk skrap og til skrap som floker seg.'
     ],
     qs: [
-      { t: 'tf', q: 'Mo er det eneste stålverket i Celsa Group som laster skrapet inn i ovnen med conveyor.', ans: true, e: 'Per i dag er Mo alene om dette i konsernet.', p: 39 },
+      { t: 'tf', q: 'Kjøring med conveyor gir mindre støv og røyk enn korgkjøring, fordi hvelvet kan bli liggende på.', ans: true, e: 'Utslippene ledes tilbake gjennom forvarmingsdelen og ut i renseanlegget i stedet for ut i hallen.', p: 39 },
       { q: 'Omtrent hvor mye mindre strøm bruker stålovnen med conveyor enn med korg?', a: ['Ca. 10 %', 'Ca. 1 %', 'Ca. 50 %', 'Ingenting'], e: 'Forvarmingen gjør at skrapet trenger mindre energi for å smelte.', p: 39 },
       { h: 1, q: 'Hva er normal temperatur på avgassen fra stålovnen?', a: ['Rundt 800 °C (opp mot 1200 °C)', 'Rundt 200 °C', 'Rundt 1600 °C', 'Rundt 3000 °C'], e: 'Avgassen ledes gjennom forvarmingsdelen og varmer skrapet før den går til renseanlegget.', p: 39 },
       { h: 1, q: 'Hva er oppgaven til static seal?', a: ['Redusere falskluftinntak fra øst', 'Tette mellom ovn og øse', 'Kjøle hoodene', 'Veie skrapet'], e: 'Falskluft fra øst gir mer diffuse utslipp og kaldere luft i forvarmingen. Da blir forvarmingen dårligere og strømforbruket høyere.', p: 39 },
@@ -191,7 +191,7 @@ const ZONES = [
       { q: 'Hvilket skrap er for stort for conveyoren?', a: ['Over 0,5 × 0,5 × 1,5 m eller tyngre enn 500 kg', 'Over 0,1 × 0,1 × 0,1 m', 'Over 2 × 2 × 4 m', 'Alt over 100 kg'], e: 'Slikt skrap legges til korgkjøring. Det samme gjelder umagnetisk skrap og skrap som floker seg.', p: 40 },
       { q: 'Hvor mye skrap er det omtrent i én skrapkasse (= én charge)?', a: ['Ca. 92 tonn', 'Ca. 9 tonn', 'Ca. 300 tonn', 'Ca. 30 tonn'], e: 'Kassene lastes etter resept for en bestemt kvalitet og tømmes én og én etter tur.', p: 40 },
       { q: 'Hva blir resultatet når skrapet lastes tett på conveyoren?', a: ['Lavere conveyorhastighet, lengre forvarming og mindre fukt inn i ovnen', 'Høyere conveyorhastighet', 'Mer is og snø i ovnen', 'Mer elektrodeslitasje'], e: 'Hastigheten styres av tonn inn og kWh. Tett lasting gjør at skrapet ligger lenger i forvarmingen.', p: 40 },
-      { q: 'Hvorfor går lastingen tregere med «lett skrap» (tynne plater, hulrom)?', a: ['Magneten får dårligere kontakt, så hvert løft gir lite vekt', 'Det er radioaktivt', 'Det smelter på beltet', 'Det er for tungt'], e: 'Man bruker mye tid på å laste lite vekt, og lastingen havner på etterskudd.', p: 40 },
+      { q: 'Hvorfor går lastingen tregere med «lett skrap» (tynne plater, hulrom)?', a: ['Magneten får dårligere kontakt, så hvert løft gir lite vekt', 'Det er radioaktivt', 'Det smelter på conveyoren', 'Det er for tungt'], e: 'Man bruker mye tid på å laste lite vekt, og lastingen havner på etterskudd.', p: 40 },
       { q: 'Hva kan skje hvis skrapet lastes for høyt på conveyoren?', a: ['Skrapbiter kan sette seg fast', 'Skrapet blir umagnetisk', 'Conveyoren går fortere', 'Ingenting'], e: 'Skrap som er lastet for høyt, kan sette seg fast flere steder på veien inn til ovnen, blant annet i forvarmingsdelen. Lastehøyden må derfor ikke bli for høy, selv om skrapet skal ligge tett.', p: 40 },
       { h: 1, q: 'Hvordan er hoodene i forvarmingsdelen bygget?', a: ['Vannkjølte og sprøytet med ildfastmasse', 'Av ren grafitt', 'Av tre', 'Uisolert stål'], e: 'Hoodene tåler avgass på rundt 800–1200 °C.', p: 39 }
     ]
