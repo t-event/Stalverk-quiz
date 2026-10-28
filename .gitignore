@@ -1,0 +1,5 @@
+# Kompendiet skal ikke ligge på GitHub
+*.pdf
+*.zip
+stalverk/
+stalverk_fulltekst.md
