@@ -270,6 +270,47 @@
     *, *::before, *::after { animation: none !important; transition: none !important; }
     .confetti { display: none; }
   }
+
+  /* Læring */
+  .cta {
+    display: flex; gap: 14px; align-items: center; width: 100%; text-align: left; margin: 20px 0 8px;
+    padding: 16px; border-radius: 16px; border: 2px solid var(--accent);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--surface)), var(--surface));
+    box-shadow: 0 4px 20px var(--glow);
+  }
+  .cta .ic { font-size: 34px; }
+  .cta b { display: block; font-size: 17px; }
+  .cta span { color: var(--muted); font-size: 14px; }
+  .seg { display: flex; background: var(--surface-2); border-radius: 12px; padding: 4px; gap: 4px; margin: 16px 0 0; }
+  .seg button { flex: 1; border: 0; background: none; border-radius: 9px; padding: 9px 8px; font-weight: 700; font-size: 14px; color: var(--muted); }
+  .seg button.on { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+  .seg-note { color: var(--muted); font-size: 13px; margin: 6px 2px 0; }
+  .station .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+  .tag { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 1px 8px; background: var(--surface-2); color: var(--muted); }
+  .tag.ok { background: var(--good-bg); color: var(--good); }
+  .station.intro-st { border-color: var(--accent); }
+  .big-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+  @media (max-width: 480px) { .big-actions { grid-template-columns: 1fr; } }
+  .big-actions .btn { flex-direction: column; padding: 18px 12px; font-size: 16px; gap: 2px; }
+  .big-actions .btn small { font-weight: 500; font-size: 12px; opacity: .85; }
+  .dots { display: flex; gap: 6px; margin: 4px 0 14px; }
+  .dots i { flex: 1; height: 6px; border-radius: 999px; background: var(--surface-2); }
+  .dots i.on { background: var(--accent); }
+  .lesson h2 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; }
+  .lbody p { margin: 0 0 10px; }
+  .lbody ul, .lbody ol { margin: 0 0 10px; padding-left: 22px; }
+  .lbody li { margin-bottom: 6px; }
+  .lbody ul.tight li { margin-bottom: 2px; }
+  .lbody b { color: var(--accent); }
+  .check { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border); }
+  .check-h { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 0 0 8px; font-weight: 700; }
+  .hint { margin-top: 10px; background: none; border: 1px dashed var(--border); color: var(--muted); border-radius: 10px; padding: 8px 12px; font-size: 14px; font-weight: 600; }
+  .hint:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .note { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .gloss-search { width: 100%; font: inherit; padding: 12px 14px; border-radius: 12px; border: 2px solid var(--border); background: var(--surface); color: var(--text); margin-bottom: 12px; }
+  .gloss-search:focus { outline: none; border-color: var(--accent); }
+  .gloss dt { font-weight: 800; color: var(--accent); margin-top: 12px; }
+  .gloss dd { margin: 2px 0 0; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -277,19 +318,23 @@
   <div class="wrap">
     <button class="brand" data-act="home"><span class="flame">🔥</span>Smelteprøven</button>
     <span class="spacer"></span>
+    <button class="chip" data-act="glossary">📘 Ordliste</button>
     <span class="chip" id="chip-stars"><span class="star">★</span> 0</span>
   </div>
 </header>
 <main class="wrap" id="app"></main>
 
 <script src="questions.js"></script>
+<script src="lessons.js"></script>
 <script>
 (() => {
   const SAVE_KEY = 'stalverk-smelteprove-v1';
-  const ROUND_SIZE = 10;
-  const FINAL_SIZE = 20;
   const LYN_SECONDS = 60;
   const LIVES = 3;
+  const LEVELS = {
+    ny: { label: '🌱 Nybegynner', round: 8, final: 15, lives: false, hint: true, hard: false, note: 'Grunnleggende spørsmål, ingen liv å miste, 50/50-hint, og feil kommer igjen til du klarer dem.' },
+    erfaren: { label: '🔥 Erfaren', round: 10, final: 20, lives: true, hint: false, hard: true, note: 'Alle spørsmål, også de vanskelige. Tre elektroder (liv) per runde.' }
+  };
 
   const RANKS = [
     [0, 'Lærling i skraplageret'],
@@ -303,7 +348,6 @@
   const GOOD = ['Rett i stålbadet!', 'Godt tettet!', 'Perfekt skumslagg!', 'Full inngang på legeringen!', 'Innenfor analysen!', 'Strålende utstøpning!', 'Tappeklar!'];
   const BAD = ['Fosforbom!', 'Elektrodebrudd!', 'Groing i terningen!', 'Kok i øsa!', 'Analysebom!', 'Pipe i emnet!', 'Overslag!'];
 
-  // Gi alle spørsmål en fast id og sonetilhørighet
   const ALL = [];
   ZONES.forEach(z => z.qs.forEach((q, i) => { q.id = z.id + '-' + i; q.zone = z.id; ALL.push(q); }));
   const BY_ID = Object.fromEntries(ALL.map(q => [q.id, q]));
@@ -314,7 +358,8 @@
   function load() {
     try { return JSON.parse(localStorage.getItem(SAVE_KEY)) || {}; } catch (e) { return {}; }
   }
-  const P = Object.assign({ zones: {}, wrong: [], lynBest: 0, finalBest: 0 }, load());
+  const P = Object.assign({ zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {}, level: 'ny' }, load());
+  if (!LEVELS[P.level]) P.level = 'ny';
   function save() {
     try { localStorage.setItem(SAVE_KEY, JSON.stringify(P)); } catch (e) { /* privat modus o.l. */ }
   }
@@ -327,6 +372,8 @@
   const pick = arr => arr[Math.floor(Math.random() * arr.length)];
   const starsHtml = n => '★'.repeat(n) + '<span class="off">' + '★'.repeat(3 - n) + '</span>';
   const totalStars = () => ZONES.reduce((s, z) => s + ((P.zones[z.id] || {}).stars || 0), 0);
+  const L = () => LEVELS[P.level];
+  const levelPool = qs => L().hard ? qs : qs.filter(q => !q.h);
   function rankOf(stars) {
     let cur = RANKS[0], next = null;
     for (let i = 0; i < RANKS.length; i++) {
@@ -344,27 +391,154 @@
   function updateChip() {
     document.getElementById('chip-stars').innerHTML = '<span class="star">★</span> ' + totalStars() + ' / ' + MAX_STARS;
   }
-  function scrollTop() { window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' }); }
+  function scrollTop() { window.scrollTo(0, 0); }
 
-  // Spilltilstand
-  let R = null;      // runde
+  let R = null;        // aktiv quizrunde
+  let ACTIVE = null;   // aktivt spørsmål (for tastatur)
   let timerId = null;
+
+  // ---------- Felles spørsmålskomponent ----------
+  // Tegner et spørsmål i host og kaller o.onDone(riktig, bruktHint) når det er besvart.
+  // onDone kan returnere { title, note } som vises i tilbakemeldingen.
+  function mountQuestion(host, q, o) {
+    const el = document.createElement('div');
+    host.innerHTML = '';
+    host.appendChild(el);
+    const st = { locked: false, hint: false };
+    let opts = null, pool = null, picked = [];
+    let body = '';
+
+    if (!q.t) {
+      opts = shuffle(q.a.map((text, k) => ({ text, correct: k === 0 })));
+      body = `<div class="opts">${opts.map((op, k) => `<button class="opt" data-a="mc" data-k="${k}"><span class="key">${k + 1}</span><span>${op.text}</span></button>`).join('')}</div>`;
+    } else if (q.t === 'tf') {
+      opts = [{ text: 'Sant', correct: q.ans === true }, { text: 'Usant', correct: q.ans === false }];
+      body = `<div class="opts tf">${opts.map((op, k) => `<button class="opt" data-a="mc" data-k="${k}">${k === 0 ? '✅' : '❌'} ${op.text}</button>`).join('')}</div>`;
+    } else if (q.t === 'num') {
+      body = `<form class="num-row"><input inputmode="decimal" autocomplete="off" placeholder="Ditt svar" aria-label="Ditt svar">${q.unit ? `<span class="unit">${q.unit}</span>` : ''}<button class="btn primary" type="submit">Svar</button></form>`;
+    } else if (q.t === 'order') {
+      pool = shuffle(q.items.map((_, k) => k));
+      if (pool.every((v, k) => v === k)) pool.reverse();
+      body = `<div class="order-box"></div>`;
+    }
+    const canHint = o.hint && !q.t && q.a.length >= 3;
+    el.innerHTML = `<p class="q">${q.t === 'order' ? '🔢 ' : q.t === 'num' ? '🧮 ' : ''}${q.q}</p>${body}
+      ${canHint ? `<button class="hint" data-a="hint">💡 Hint: fjern to feil svar</button>` : ''}
+      <div class="fb"></div>`;
+
+    function renderOrder(result) {
+      const box = el.querySelector('.order-box');
+      const slots = q.items.map((_, k) => {
+        const idx = picked[k];
+        const filled = idx !== undefined;
+        let cls = filled ? 'filled' : '';
+        if (result) cls += idx === k ? ' ok' : ' no';
+        return `<button class="slot ${cls}" ${filled && !result ? `data-a="unpick" data-k="${k}"` : 'disabled'}><span class="n">${k + 1}</span><span>${filled ? q.items[idx] : 'Trykk på et steg under'}</span></button>`;
+      }).join('');
+      const rest = pool.filter(k => !picked.includes(k));
+      box.innerHTML = `<div class="order-slots">${slots}</div>
+        ${result ? '' : `<div class="pool">${rest.map(k => `<button class="opt" data-a="pick" data-k="${k}">${q.items[k]}</button>`).join('')}</div>
+        <div class="btn-row"><button class="btn primary" data-a="check-order" ${picked.length === q.items.length ? '' : 'disabled'}>Sjekk rekkefølgen</button></div>`}`;
+    }
+    if (q.t === 'order') renderOrder();
+
+    function finish(ok, chosen) {
+      if (st.locked) return;
+      st.locked = true;
+      ACTIVE = null;
+      if (opts) {
+        el.querySelectorAll('[data-a="mc"]').forEach(b => {
+          const op = opts[+b.dataset.k];
+          b.disabled = true;
+          if (op.correct) b.classList.add('correct');
+          else if (+b.dataset.k === chosen) b.classList.add('wrong');
+          else b.classList.add('dim');
+        });
+      }
+      const hb = el.querySelector('[data-a="hint"]');
+      if (hb) hb.remove();
+      const extra = o.onDone(ok, st.hint) || {};
+      if (o.quick) return;
+      const learn = o.tone === 'learn';
+      const title = extra.title || (ok ? (learn ? '✅ Riktig!' : '✅ ' + pick(GOOD)) : (learn ? '🤔 Ikke helt' : '💥 ' + pick(BAD)));
+      el.querySelector('.fb').innerHTML = `
+        <div class="feedback ${ok ? 'good' : 'bad'}">
+          <h3>${title}</h3>
+          ${q.t === 'tf' ? `<p><b>Påstanden er ${q.ans ? 'sann' : 'usann'}.</b></p>` : ''}
+          ${!ok && (q.t === 'num' || q.t === 'order') ? `<p><b>Riktig svar:</b> ${correctText(q)}</p>` : ''}
+          ${!ok && !q.t ? `<p><b>Riktig svar:</b> ${q.a[0]}</p>` : ''}
+          <p>${q.e}</p>
+          ${extra.note ? `<p class="note">${extra.note}</p>` : ''}
+          <div class="ref">📖 Kompendiet s. ${q.p}</div>
+        </div>`;
+      el.querySelector('.feedback').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function choose(k) {
+      if (st.locked || !opts || k >= opts.length) return;
+      const b = el.querySelector(`[data-a="mc"][data-k="${k}"]`);
+      if (!b || b.hidden) return;
+      finish(opts[k].correct, k);
+    }
+
+    el.addEventListener('click', e => {
+      const b = e.target.closest('[data-a]');
+      if (!b || b.disabled || st.locked) return;
+      const a = b.dataset.a, k = +b.dataset.k;
+      if (a === 'mc') choose(k);
+      else if (a === 'hint') {
+        st.hint = true;
+        const wrongs = shuffle(opts.map((op, i) => i).filter(i => !opts[i].correct));
+        wrongs.slice(0, opts.length - 2).forEach(i => { el.querySelector(`[data-a="mc"][data-k="${i}"]`).hidden = true; });
+        b.disabled = true;
+        b.textContent = '💡 To feil svar er fjernet';
+      }
+      else if (a === 'pick') { picked.push(k); renderOrder(); }
+      else if (a === 'unpick') { picked.splice(k, 1); renderOrder(); }
+      else if (a === 'check-order') { renderOrder(true); finish(picked.every((v, i) => v === i)); }
+    });
+
+    const form = el.querySelector('form');
+    if (form) {
+      const inp = form.querySelector('input');
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (st.locked) return;
+        const raw = inp.value.trim();
+        if (!raw) { inp.focus(); return; }
+        const v = parseFloat(raw.replace(/\s/g, '').replace(',', '.'));
+        const ok = !isNaN(v) && Math.abs(v - q.ans) <= q.tol + 1e-9;
+        inp.disabled = true;
+        form.querySelector('button').disabled = true;
+        inp.style.borderColor = ok ? 'var(--good)' : 'var(--bad)';
+        finish(ok);
+      });
+      if (o.focus && matchMedia('(pointer: fine)').matches) inp.focus();
+    }
+    ACTIVE = { choose };
+  }
 
   // ---------- Startside ----------
   function renderHome() {
     stopTimer();
-    R = null;
+    R = null; ACTIVE = null;
     updateChip();
     const ts = totalStars();
     const { cur, next } = rankOf(ts);
     const pct = next ? ((ts - cur[0]) / (next[0] - cur[0])) * 100 : 100;
-    const wrongN = P.wrong.filter(id => BY_ID[id]).length;
+    const wrongN = P.wrong.filter(id => BY_ID[id] && (L().hard || !BY_ID[id].h)).length;
+    const introDone = P.lessons.intro;
 
     $app.innerHTML = `
       <section class="hero">
         <h1>Lær stålverket <em>fra skrap til emne</em></h1>
-        <p>${ZONES.length} stasjoner, ${ALL.length} spørsmål. Les huskereglene, svar riktig og samle stjerner. Mister du tre elektroder, er runden over.</p>
+        <p>Les korte leksjoner om hver stasjon, sjekk at du har forstått, og øv deg til du får tre stjerner.</p>
       </section>
+      ${introDone ? '' : `<button class="cta" data-act="lesson" data-id="intro"><span class="ic">🌱</span><span><b>Ny i stålverket? Start her</b><span>«Stålverket på 5 minutter» gir deg oversikten først.</span></span></button>`}
+      <div class="seg" role="group" aria-label="Nivå">
+        ${Object.entries(LEVELS).map(([k, v]) => `<button class="${P.level === k ? 'on' : ''}" data-act="level" data-id="${k}">${v.label}</button>`).join('')}
+      </div>
+      <p class="seg-note">${L().note}</p>
       <div class="rank">
         <div class="rank-row">
           <span class="rank-title">🎖️ ${cur[1]}</span>
@@ -372,22 +546,29 @@
         </div>
         <div class="meter"><i style="width:${pct}%"></i></div>
       </div>
-      <div class="modes">
-        <button class="mode" data-act="lyn"><span class="ic">⚡</span><b>Lynrunde</b><span>${LYN_SECONDS} sekunder, så mange du rekker. Rekord: ${P.lynBest}</span></button>
-        <button class="mode" data-act="final"><span class="ic">🏆</span><b>Sluttprøven</b><span>${FINAL_SIZE} spørsmål fra hele verket. Rekord: ${P.finalBest}/${FINAL_SIZE}</span></button>
-        <button class="mode" data-act="retry" ${wrongN ? '' : 'disabled'}><span class="ic">🔁</span><b>Øv på feilene</b><span>${wrongN ? wrongN + ' spørsmål du har bommet på' : 'Ingen feil å øve på ennå'}</span></button>
-      </div>
-      <h2 class="section">Stasjonene i verket</h2>
+      <h2 class="section" style="margin-top:24px">Stasjonene i verket</h2>
       <div class="map">
+        <button class="station intro-st ${introDone ? 'done' : ''}" data-act="lesson" data-id="intro">
+          <span class="badge">${INTRO.icon}</span>
+          <span class="info"><span class="name">Start her: ${INTRO.name}</span><span class="tags">${introDone ? '<span class="tag ok">📖 Lest</span>' : `<span class="tag">${INTRO.cards.length} korte kort</span>`}</span></span>
+        </button>
         ${ZONES.map((z, i) => {
           const zp = P.zones[z.id] || {};
           const s = zp.stars || 0;
+          const read = P.lessons[z.id];
           return `<button class="station ${s ? 'done' : ''}" data-act="zone" data-id="${z.id}">
             <span class="badge">${z.icon}</span>
-            <span class="info"><span class="name">${i + 1}. ${z.name}</span><span class="meta">${z.pages} · ${z.qs.length} spørsmål${zp.best ? ' · rekord ' + zp.best + ' p' : ''}</span></span>
+            <span class="info"><span class="name">${i + 1}. ${z.name}</span>
+              <span class="tags">${read ? '<span class="tag ok">📖 Lest</span>' : '<span class="tag">📖 Ikke lest</span>'}${zp.expert ? `<span class="tag ok">🔥 Erfaren ${'★'.repeat(zp.expert)}</span>` : ''}</span></span>
             <span class="stars">${starsHtml(s)}</span>
           </button>`;
         }).join('')}
+      </div>
+      <h2 class="section" style="margin-top:28px">Når du har lært litt</h2>
+      <div class="modes">
+        <button class="mode" data-act="lyn"><span class="ic">⚡</span><b>Lynrunde</b><span>${LYN_SECONDS} sekunder, så mange du rekker. Rekord: ${P.lynBest}</span></button>
+        <button class="mode" data-act="final"><span class="ic">🏆</span><b>Sluttprøven</b><span>${L().final} spørsmål fra hele verket. Rekord: ${P.finalBest}</span></button>
+        <button class="mode" data-act="retry" ${wrongN ? '' : 'disabled'}><span class="ic">🔁</span><b>Øv på feilene</b><span>${wrongN ? wrongN + ' spørsmål du har bommet på' : 'Ingen feil å øve på ennå'}</span></button>
       </div>
       <div class="foot">
         <span>Basert på metallurgikurs-kompendiet (Celsa, 2. utg. 2024). Sidetallene viser til kompendiet.</span>
@@ -396,35 +577,110 @@
     scrollTop();
   }
 
-  // ---------- Huskeregler før sone ----------
-  function renderIntro(zid) {
+  // ---------- Stasjonsside ----------
+  function renderZone(zid) {
     const z = ZONE_BY_ID[zid];
     const zp = P.zones[zid] || {};
+    const read = P.lessons[zid];
+    const n = Math.min(L().round, levelPool(z.qs).length);
     $app.innerHTML = `
       <button class="back" data-act="home">← Til kartet</button>
       <div class="intro-head">
         <span class="big">${z.icon}</span>
         <div><h1>${z.name}</h1><div class="meta">Kompendiet ${z.pages} · <span class="stars">${starsHtml(zp.stars || 0)}</span></div></div>
       </div>
-      <div class="card">
+      <div class="big-actions">
+        <button class="btn ${read ? '' : 'primary'}" data-act="lesson" data-id="${z.id}">📖 ${read ? 'Les igjen' : 'Lær først'}<small>${LESSONS[z.id].length} korte kort med sjekkspørsmål</small></button>
+        <button class="btn ${read ? 'primary' : ''}" data-act="start-zone" data-id="${z.id}">🎯 Øv<small>${n} spørsmål · ${L().label}</small></button>
+      </div>
+      <div class="card" style="margin-top:16px">
         <h2 class="section">🧠 Huskeregler</h2>
         <ul class="facts">${z.facts.map(f => `<li>${f}</li>`).join('')}</ul>
-        <p class="tip">Runden har ${Math.min(ROUND_SIZE, z.qs.length)} tilfeldige spørsmål og ${LIVES} elektroder. 90 % riktig gir tre stjerner.</p>
-      </div>
-      <div class="btn-row">
-        <button class="btn primary" data-act="start-zone" data-id="${z.id}">🔥 Start smeltingen</button>
       </div>`;
     scrollTop();
   }
 
-  // ---------- Runde ----------
+  // ---------- Leksjon ----------
+  function renderLesson(zid, i = 0) {
+    stopTimer(); R = null;
+    const isIntro = zid === 'intro';
+    const z = isIntro ? INTRO : ZONE_BY_ID[zid];
+    const cards = isIntro ? INTRO.cards : LESSONS[zid];
+    const summary = !isIntro;           // stasjonene får huskeregler som siste kort
+    const total = cards.length + (summary ? 1 : 0);
+    const last = i === total - 1;
+    const isSummary = summary && i === cards.length;
+    if (last) { P.lessons[zid] = true; save(); }
+
+    let content;
+    if (isSummary) {
+      content = `<h2>🧠 Oppsummering</h2><ul class="facts">${z.facts.map(f => `<li>${f}</li>`).join('')}</ul>
+        <p class="tip">Bra jobba! Nå er du klar til å øve. Spørsmål du bommer på, kommer tilbake til du klarer dem.</p>`;
+    } else {
+      const c = cards[i];
+      content = `<h2>${c.title}</h2><div class="lbody">${c.body}</div>
+        ${c.check && BY_ID[c.check] ? `<div class="check"><p class="check-h">🤔 Sjekk deg selv</p><div id="check-host"></div></div>` : ''}`;
+    }
+    const nextBtn = last
+      ? (isIntro ? `<button class="btn primary" data-act="home">✅ Ferdig, til kartet</button>`
+                 : `<button class="btn primary" data-act="start-zone" data-id="${zid}">🎯 Øv nå</button>`)
+      : `<button class="btn primary" data-act="lesson" data-id="${zid}" data-i="${i + 1}">Neste →</button>`;
+
+    $app.innerHTML = `
+      <button class="back" data-act="${isIntro ? 'home' : 'zone'}" data-id="${zid}">← ${isIntro ? 'Til kartet' : 'Til stasjonen'}</button>
+      <div class="qmeta"><span>${z.icon} ${z.name}</span><span>Kort ${i + 1} av ${total}</span></div>
+      <div class="dots">${Array.from({ length: total }, (_, k) => `<i class="${k <= i ? 'on' : ''}"></i>`).join('')}</div>
+      <article class="card lesson">${content}</article>
+      <div class="btn-row">
+        ${i > 0 ? `<button class="btn" data-act="lesson" data-id="${zid}" data-i="${i - 1}">← Forrige</button>` : ''}
+        ${nextBtn}
+      </div>`;
+    const host = document.getElementById('check-host');
+    if (host) {
+      const q = BY_ID[cards[i].check];
+      mountQuestion(host, q, {
+        tone: 'learn', hint: false, focus: false,
+        onDone: ok => { if (ok) markRight(q.id); save(); }
+      });
+    }
+    scrollTop();
+  }
+
+  // ---------- Ordliste ----------
+  function renderGlossary() {
+    stopTimer(); R = null; ACTIVE = null;
+    $app.innerHTML = `
+      <button class="back" data-act="home">← Til kartet</button>
+      <div class="intro-head"><span class="big">📘</span><div><h1>Ordliste</h1><div class="meta">Faguttrykk du hører i stålverket</div></div></div>
+      <input class="gloss-search" id="gloss-q" placeholder="Søk etter et ord …" autocomplete="off">
+      <dl class="gloss" id="gloss-list"></dl>`;
+    const list = document.getElementById('gloss-list');
+    const draw = f => {
+      const t = f.trim().toLowerCase();
+      const rows = GLOSSARY.filter(([w, d]) => !t || w.toLowerCase().includes(t) || d.toLowerCase().includes(t));
+      list.innerHTML = rows.length ? rows.map(([w, d]) => `<dt>${w}</dt><dd>${d}</dd>`).join('') : '<p class="tip">Ingen treff.</p>';
+    };
+    draw('');
+    document.getElementById('gloss-q').addEventListener('input', e => draw(e.target.value));
+    scrollTop();
+  }
+
+  // ---------- Øverunde ----------
   function startRound(mode, opts = {}) {
+    const lv = L();
     let list;
-    if (mode === 'zone') list = shuffle(ZONE_BY_ID[opts.zone].qs).slice(0, ROUND_SIZE);
-    else if (mode === 'final') list = shuffle(ALL).slice(0, FINAL_SIZE);
-    else if (mode === 'retry') list = shuffle(P.wrong.map(id => BY_ID[id]).filter(Boolean)).slice(0, ROUND_SIZE);
-    else if (mode === 'lyn') list = shuffle(ALL.filter(q => !q.t || q.t === 'tf'));
-    R = { mode, zone: opts.zone || null, list, i: 0, lives: mode === 'lyn' ? Infinity : LIVES, score: 0, streak: 0, bestStreak: 0, correct: 0, answered: 0, missed: [], locked: false, over: false };
+    if (mode === 'zone') list = shuffle(levelPool(ZONE_BY_ID[opts.zone].qs)).slice(0, lv.round);
+    else if (mode === 'final') list = shuffle(levelPool(ALL)).slice(0, lv.final);
+    else if (mode === 'retry') list = shuffle(P.wrong.map(id => BY_ID[id]).filter(q => q && (lv.hard || !q.h))).slice(0, lv.round);
+    else if (mode === 'lyn') list = shuffle(levelPool(ALL).filter(q => !q.t || q.t === 'tf'));
+    if (!list.length) return renderHome();
+    R = {
+      mode, zone: opts.zone || null, list, unique: list.length, i: 0,
+      lives: lv.lives && mode !== 'lyn' ? LIVES : Infinity,
+      repeat: !lv.lives && mode !== 'lyn',
+      score: 0, streak: 0, bestStreak: 0, firstRight: 0, correct: 0, answered: 0,
+      seen: new Set(), requeued: new Set(), missed: [], over: false
+    };
     if (mode === 'lyn') {
       R.end = Date.now() + LYN_SECONDS * 1000;
       timerId = setInterval(tickTimer, 200);
@@ -450,14 +706,12 @@
   }
 
   function hudHtml() {
-    const lives = R.mode === 'lyn' ? '' :
+    const lives = R.lives === Infinity ? '' :
       `<span class="lives" title="Elektroder igjen">${Array.from({ length: LIVES }, (_, k) => `<span class="${k < R.lives ? '' : 'lost'}">⚡</span>`).join('')}</span>`;
     const prog = R.mode === 'lyn'
       ? `<div class="progress timer"><i id="timer-bar" style="width:${Math.max(0, R.end - Date.now()) / (LYN_SECONDS * 1000) * 100}%"></i></div>`
       : `<div class="progress"><i style="width:${(R.i / R.list.length) * 100}%"></i></div>`;
-    return `
-      <button class="back" data-act="quit">← Avbryt</button>
-      <div class="hud">
+    return `<div class="hud">
         <span class="chip">${modeLabel()}</span>
         <span class="spacer"></span>
         ${R.streak >= 2 ? `<span class="streak">🔥 ${R.streak} på rad</span>` : ''}
@@ -468,121 +722,72 @@
   }
 
   function renderQuestion() {
-    if (R.mode === 'lyn' && R.i >= R.list.length) { R.list = R.list.concat(shuffle(R.list)); }
+    if (R.mode === 'lyn' && R.i >= R.list.length) R.list = R.list.concat(shuffle(R.list));
     const q = R.list[R.i];
-    R.locked = false;
-    R.cur = { q };
     const z = ZONE_BY_ID[q.zone];
+    const again = R.seen.has(q.id);
     const counter = R.mode === 'lyn' ? `#${R.i + 1}` : `Spørsmål ${R.i + 1} av ${R.list.length}`;
-    let body = '';
-
-    if (!q.t) {
-      R.cur.opts = shuffle(q.a.map((text, k) => ({ text, correct: k === 0 })));
-      body = `<div class="opts">${R.cur.opts.map((o, k) => `<button class="opt" data-act="mc" data-k="${k}"><span class="key">${k + 1}</span><span>${o.text}</span></button>`).join('')}</div>`;
-    } else if (q.t === 'tf') {
-      R.cur.opts = [{ text: 'Sant', correct: q.ans === true }, { text: 'Usant', correct: q.ans === false }];
-      body = `<div class="opts tf">${R.cur.opts.map((o, k) => `<button class="opt" data-act="mc" data-k="${k}">${k === 0 ? '✅' : '❌'} ${o.text}</button>`).join('')}</div>`;
-    } else if (q.t === 'num') {
-      body = `<form class="num-row" data-form="num"><input id="num-in" inputmode="decimal" autocomplete="off" placeholder="Ditt svar" aria-label="Ditt svar">${q.unit ? `<span class="unit">${q.unit}</span>` : ''}<button class="btn primary" type="submit">Svar</button></form>`;
-    } else if (q.t === 'order') {
-      let pool = shuffle(q.items.map((_, k) => k));
-      if (pool.every((v, k) => v === k)) pool.reverse();
-      R.cur.pool = pool;
-      R.cur.picked = [];
-      body = `<div id="order-box"></div>`;
-    }
-
-    $app.innerHTML = `${hudHtml()}
+    $app.innerHTML = `
+      <button class="back" data-act="quit">← Avbryt</button>
+      <div id="hud-box">${hudHtml()}</div>
       <div class="card" id="qcard">
-        <div class="qmeta"><span>${counter}</span><span>${R.mode === 'zone' ? '' : z.icon + ' ' + z.name}</span></div>
-        <p class="q">${q.t === 'order' ? '🔢 ' : q.t === 'num' ? '🧮 ' : ''}${q.q}</p>
-        ${body}
-        <div id="fb"></div>
+        <div class="qmeta"><span>${counter}${again ? ' · 🔁 Nytt forsøk' : ''}</span><span>${R.mode === 'zone' ? '' : z.icon + ' ' + z.name}</span></div>
+        <div id="q-host"></div>
+        <div id="next-box"></div>
       </div>`;
-    if (q.t === 'order') renderOrder();
-    if (q.t === 'num') { const inp = document.getElementById('num-in'); if (inp && matchMedia('(pointer: fine)').matches) inp.focus(); }
+    mountQuestion(document.getElementById('q-host'), q, {
+      tone: 'game', hint: L().hint && R.mode !== 'lyn', quick: R.mode === 'lyn', focus: true,
+      onDone: (ok, usedHint) => onAnswer(q, ok, usedHint)
+    });
   }
 
-  function renderOrder(result) {
-    const q = R.cur.q, box = document.getElementById('order-box');
-    const { picked, pool } = R.cur;
-    const slots = q.items.map((_, k) => {
-      const idx = picked[k];
-      const filled = idx !== undefined;
-      let cls = filled ? 'filled' : '';
-      if (result) cls += idx === k ? ' ok' : ' no';
-      return `<button class="slot ${cls}" ${filled && !result ? `data-act="unpick" data-k="${k}"` : 'disabled'}><span class="n">${k + 1}</span><span>${filled ? q.items[idx] : 'Trykk på et steg under'}</span></button>`;
-    }).join('');
-    const rest = pool.filter(k => !picked.includes(k));
-    box.innerHTML = `
-      <div class="order-slots">${slots}</div>
-      ${result ? '' : `<div class="pool">${rest.map(k => `<button class="opt" data-act="pick" data-k="${k}">${q.items[k]}</button>`).join('')}</div>
-      <div class="btn-row"><button class="btn primary" data-act="check-order" ${picked.length === q.items.length ? '' : 'disabled'}>Sjekk rekkefølgen</button></div>`}`;
-  }
-
-  function answer(isCorrect, extra) {
-    if (R.locked) return;
-    R.locked = true;
-    const q = R.cur.q;
+  function onAnswer(q, ok, usedHint) {
+    const first = !R.seen.has(q.id);
+    R.seen.add(q.id);
     R.answered++;
-    let gain = 0;
-    if (isCorrect) {
+    let gain = 0, note = '';
+    if (ok) {
       R.correct++;
+      if (first) R.firstRight++;
       R.streak++;
       R.bestStreak = Math.max(R.bestStreak, R.streak);
-      gain = 100 + Math.min(R.streak - 1, 5) * 20;
+      gain = Math.round((100 + Math.min(R.streak - 1, 5) * 20) * (usedHint ? 0.5 : 1) * (first ? 1 : 0.5));
       R.score += gain;
       markRight(q.id);
     } else {
       R.streak = 0;
-      if (R.mode !== 'lyn') R.lives--;
-      R.missed.push(q);
+      if (R.lives !== Infinity) R.lives--;
+      if (first) R.missed.push(q);
       markWrong(q.id);
+      if (R.repeat && !R.requeued.has(q.id)) {
+        R.requeued.add(q.id);
+        R.list.push(q);
+        note = '🔁 Les forklaringen. Spørsmålet kommer tilbake senere i runden.';
+      }
     }
     save();
 
-    // Marker alternativer
-    if (R.cur.opts) {
-      document.querySelectorAll('[data-act="mc"]').forEach(b => {
-        const o = R.cur.opts[+b.dataset.k];
-        b.disabled = true;
-        if (o.correct) b.classList.add('correct');
-        else if (+b.dataset.k === extra) b.classList.add('wrong');
-        else b.classList.add('dim');
-      });
-    }
     const card = document.getElementById('qcard');
-    card.classList.add(isCorrect ? 'flash-good' : 'flash-bad');
-    if (!isCorrect) card.classList.add('shake');
+    card.classList.add(ok ? 'flash-good' : 'flash-bad');
+    if (!ok) card.classList.add('shake');
 
     if (R.mode === 'lyn') {
-      setTimeout(() => { if (R && R.mode === 'lyn' && timerId) { R.i++; renderQuestion(); } }, isCorrect ? 350 : 900);
-      return;
+      document.getElementById('hud-box').innerHTML = hudHtml();
+      setTimeout(() => { if (R && R.mode === 'lyn' && timerId) { R.i++; renderQuestion(); } }, ok ? 350 : 900);
+      return {};
     }
-
-    const out = R.lives <= 0;
-    if (out) R.over = true;
-    const last = R.i >= R.list.length - 1 || out;
-    const fb = document.getElementById('fb');
-    fb.innerHTML = `
-      <div class="feedback ${isCorrect ? 'good' : 'bad'}">
-        <h3>${isCorrect ? '✅ ' + pick(GOOD) + ` <span class="gain">+${gain}</span>` : '💥 ' + pick(BAD) + (R.lives > 0 ? ` (${R.lives} ⚡ igjen)` : '')}</h3>
-        ${q.t === 'tf' ? `<p><b>Påstanden er ${q.ans ? 'sann' : 'usann'}.</b></p>` : ''}
-        ${!isCorrect && (q.t === 'num' || q.t === 'order') ? `<p><b>Riktig svar:</b> ${correctText(q)}</p>` : ''}
-        <p>${q.e}</p>
-        <div class="ref">📖 Kompendiet s. ${q.p}</div>
-      </div>
-      ${out ? `<div class="feedback bad"><h3>🚨 Gjennombrudd!</h3><p>Alle elektrodene er brukt opp, og runden er over.</p></div>` : ''}
+    if (R.lives <= 0) R.over = true;
+    const last = R.i >= R.list.length - 1 || R.over;
+    document.getElementById('hud-box').innerHTML = hudHtml();
+    document.getElementById('next-box').innerHTML = `
+      ${R.over ? `<div class="feedback bad"><h3>🚨 Gjennombrudd!</h3><p>Alle elektrodene er brukt opp, og runden er over.</p></div>` : ''}
       <div class="btn-row"><button class="btn primary" data-act="next" id="next-btn">${last ? 'Se resultatet' : 'Neste →'}</button></div>`;
-    // Oppdater HUD (liv/poeng) uten å tegne spørsmålet på nytt
-    const hud = document.querySelector('.hud');
-    if (hud) {
-      const tmp = document.createElement('div');
-      tmp.innerHTML = hudHtml();
-      hud.replaceWith(tmp.querySelector('.hud'));
-    }
     document.getElementById('next-btn').focus({ preventScroll: true });
-    fb.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    let title;
+    if (ok) title = '✅ ' + pick(GOOD) + ` <span class="gain">+${gain}</span>`;
+    else if (R.lives === Infinity) title = '🤔 Ikke helt riktig';
+    else title = '💥 ' + pick(BAD) + (R.lives > 0 ? ` (${R.lives} ⚡ igjen)` : '');
+    return { title, note };
   }
 
   function next() {
@@ -595,18 +800,20 @@
   // ---------- Resultat ----------
   function finishRound() {
     stopTimer();
-    const total = R.mode === 'lyn' ? R.answered : R.list.length;
-    const pct = total ? R.correct / total : 0;
-    let stars = pct >= 0.9 ? 3 : pct >= 0.7 ? 2 : pct >= 0.5 ? 1 : 0;
+    ACTIVE = null;
+    const total = R.mode === 'lyn' ? R.answered : R.unique;
+    const pct = total ? (R.mode === 'lyn' ? R.correct : R.firstRight) / total : 0;
+    const stars = pct >= 0.9 ? 3 : pct >= 0.7 ? 2 : pct >= 0.5 ? 1 : 0;
     let newRecord = false;
 
     if (R.mode === 'zone') {
       const zp = P.zones[R.zone] || { stars: 0, best: 0 };
       if (R.score > (zp.best || 0)) { zp.best = R.score; newRecord = true; }
       zp.stars = Math.max(zp.stars || 0, stars);
+      if (P.level === 'erfaren') zp.expert = Math.max(zp.expert || 0, stars);
       P.zones[R.zone] = zp;
     } else if (R.mode === 'final') {
-      if (R.correct > P.finalBest) { P.finalBest = R.correct; newRecord = true; }
+      if (R.firstRight > P.finalBest) { P.finalBest = R.firstRight; newRecord = true; }
     } else if (R.mode === 'lyn') {
       if (R.correct > P.lynBest) { P.lynBest = R.correct; newRecord = true; }
     }
@@ -618,10 +825,13 @@
       title = R.correct >= 20 ? 'Lynende metallurg! ⚡' : R.correct >= 10 ? 'Rask på avtrekkeren!' : 'Varmer seg opp';
       sub = `${R.correct} riktige av ${R.answered} besvarte på ${LYN_SECONDS} sekunder.`;
     } else {
-      title = R.over ? 'Gjennombrudd på strengen' : stars === 3 ? 'Klar for tapping! 🔥' : stars === 2 ? 'Nesten tappeklar' : stars === 1 ? 'Smelter sakte' : 'Kald charge';
-      sub = `${R.correct} av ${total} riktige${R.over ? ' (resten telles som feil)' : ''}.`;
+      title = R.over ? 'Gjennombrudd på strengen' : stars === 3 ? 'Klar for tapping! 🔥' : stars === 2 ? 'Nesten tappeklar' : stars === 1 ? 'God start' : 'Godt forsøk, prøv igjen';
+      sub = `${R.firstRight} av ${total} riktige på første forsøk${R.over ? ' (resten telles som feil)' : ''}.`;
+      if (R.repeat && R.missed.length) sub += ' Alle feilene ble rettet opp underveis.';
     }
     const showStars = R.mode !== 'lyn';
+    const tip = R.mode === 'zone' && stars < 3
+      ? `<p class="tip">💡 Tips: les leksjonen for ${ZONE_BY_ID[R.zone].name} en gang til, og prøv igjen.</p>` : '';
 
     $app.innerHTML = `
       <section class="result">
@@ -633,12 +843,14 @@
           <div class="stat"><b>${Math.round(pct * 100)} %</b><span>treffsikkerhet</span></div>
           <div class="stat"><b>${R.bestStreak}</b><span>lengste rekke</span></div>
         </div>
+        ${tip}
         <div class="btn-row">
           <button class="btn primary" data-act="again">🔁 Prøv igjen</button>
+          ${R.mode === 'zone' ? `<button class="btn" data-act="lesson" data-id="${R.zone}">📖 Les leksjonen</button>` : ''}
           <button class="btn" data-act="home">🗺️ Til kartet</button>
         </div>
-        ${R.missed.length ? `<div class="missed"><h2>Det du bommet på (${R.missed.length})</h2>${R.missed.map(q => `
-          <div class="miss"><div class="mq">${q.t === 'tf' ? 'Sant eller usant: ' : ''}${q.q}</div><div class="ma">✔ ${correctText(q)}</div><div class="mr">${ZONE_BY_ID[q.zone].icon} ${ZONE_BY_ID[q.zone].name} · Kompendiet s. ${q.p}</div></div>`).join('')}</div>` : ''}
+        ${R.missed.length ? `<div class="missed"><h2>Verdt å repetere (${R.missed.length})</h2>${R.missed.map(q => `
+          <div class="miss"><div class="mq">${q.t === 'tf' ? 'Sant eller usant: ' : ''}${q.q}</div><div class="ma">✔ ${correctText(q)}</div><div class="mr">${q.e}</div><div class="mr">${ZONE_BY_ID[q.zone].icon} ${ZONE_BY_ID[q.zone].name} · Kompendiet s. ${q.p}</div></div>`).join('')}</div>` : ''}
       </section>`;
     scrollTop();
     if (showStars && stars === 3 && !R.over) confetti();
@@ -664,68 +876,36 @@
   document.addEventListener('click', e => {
     const el = e.target.closest('[data-act]');
     if (!el || el.disabled) return;
-    const act = el.dataset.act;
-    switch (act) {
+    const id = el.dataset.id;
+    switch (el.dataset.act) {
       case 'home': renderHome(); break;
-      case 'zone': renderIntro(el.dataset.id); break;
-      case 'start-zone': startRound('zone', { zone: el.dataset.id }); break;
+      case 'glossary': renderGlossary(); break;
+      case 'zone': renderZone(id); break;
+      case 'lesson': renderLesson(id, +(el.dataset.i || 0)); break;
+      case 'level': P.level = id; save(); renderHome(); break;
+      case 'start-zone': startRound('zone', { zone: id }); break;
       case 'lyn': startRound('lyn'); break;
       case 'final': startRound('final'); break;
       case 'retry': startRound('retry'); break;
       case 'quit': if (confirm('Avbryte runden? Fremgangen i denne runden blir ikke lagret.')) renderHome(); break;
-      case 'mc': {
-        const k = +el.dataset.k;
-        answer(R.cur.opts[k].correct, k);
-        break;
-      }
-      case 'pick': R.cur.picked.push(+el.dataset.k); renderOrder(); break;
-      case 'unpick': R.cur.picked.splice(+el.dataset.k, 1); renderOrder(); break;
-      case 'check-order': {
-        const ok = R.cur.picked.every((v, k) => v === k);
-        renderOrder(true);
-        answer(ok);
-        break;
-      }
       case 'next': next(); break;
       case 'again': {
         const { mode, zone } = R;
-        if (mode === 'retry' && !P.wrong.length) renderHome();
-        else startRound(mode, { zone });
+        startRound(mode, { zone });
         break;
       }
       case 'reset':
-        if (confirm('Slette alle stjerner, rekorder og feil-listen?')) {
-          P.zones = {}; P.wrong = []; P.lynBest = 0; P.finalBest = 0; save(); renderHome();
+        if (confirm('Slette alle stjerner, rekorder, leste leksjoner og feil-listen?')) {
+          Object.assign(P, { zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {} }); save(); renderHome();
         }
         break;
     }
   });
 
-  document.addEventListener('submit', e => {
-    if (e.target.dataset.form !== 'num') return;
-    e.preventDefault();
-    if (!R || R.locked) return;
-    const inp = document.getElementById('num-in');
-    const raw = inp.value.trim();
-    if (!raw) { inp.focus(); return; }
-    const v = parseFloat(raw.replace(/\s/g, '').replace(',', '.'));
-    const q = R.cur.q;
-    const ok = !isNaN(v) && Math.abs(v - q.ans) <= q.tol + 1e-9;
-    inp.disabled = true;
-    e.target.querySelector('button').disabled = true;
-    inp.style.borderColor = ok ? 'var(--good)' : 'var(--bad)';
-    answer(ok);
-  });
-
   document.addEventListener('keydown', e => {
-    if (!R || e.target.tagName === 'INPUT') return;
-    if (!R.locked && R.cur && R.cur.opts && /^[1-9]$/.test(e.key)) {
-      const k = +e.key - 1;
-      if (k < R.cur.opts.length) answer(R.cur.opts[k].correct, k);
-    } else if (R.locked && e.key === 'Enter' && R.mode !== 'lyn') {
-      const btn = document.getElementById('next-btn');
-      if (btn) { e.preventDefault(); next(); }
-    }
+    if (e.target.tagName === 'INPUT') return;
+    if (ACTIVE && /^[1-9]$/.test(e.key)) ACTIVE.choose(+e.key - 1);
+    else if (e.key === 'Enter' && R && R.mode !== 'lyn' && document.getElementById('next-btn')) { e.preventDefault(); next(); }
   });
 
   renderHome();
