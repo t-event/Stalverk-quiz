@@ -39,7 +39,12 @@ const ZONES = [
       { q: 'Hvilket stoff gjør slaggen basisk?', a: ['Brent kalk (CaO)', 'SiO₂', 'P₂O₅', 'Al₂O₃'], e: 'Brent kalk gjør slaggen basisk, mens SiO₂ gjør den sur.', p: 15 },
       { q: 'Hvordan regnes basisiteten B2 ut?', a: ['%CaO / %SiO₂', '%CaO / (%SiO₂ + %Al₂O₃)', '%SiO₂ / %CaO', '%MgO / %CaO'], e: 'B2 = %CaO / %SiO₂. B3 tar også med Al₂O₃ i nevneren.', p: 15 },
       { h: 1, q: 'I teorien gir mange lange oksidkjeder en slagg som er …', a: ['tyktflytende', 'tyntflytende', 'magnetisk', 'gjennomsiktig'], e: 'Lange oksidkjeder gir tyktflytende slagg, korte kjeder gir tyntflytende. CaO bryter opp kjedene.', p: 15 },
-      { h: 1, t: 'tf', q: 'I praksis opplever vi at kalktilsats gjør slaggen tykkere, selv om CaO i teorien bryter opp oksidkjeder.', ans: true, e: 'Dette har med temperaturen og smeltepunktet til slaggen å gjøre.', p: 15 }
+      { h: 1, t: 'tf', q: 'I praksis opplever vi at kalktilsats gjør slaggen tykkere, selv om CaO i teorien bryter opp oksidkjeder.', ans: true, e: 'Dette har med temperaturen og smeltepunktet til slaggen å gjøre.', p: 15 },
+      { q: 'Hva er et molekyl?', a: ['Flere atomer som henger sammen', 'Ett enkelt proton', 'En type slagg', 'Et elektron uten ladning'], e: 'Vann (H₂O) er et molekyl av to hydrogenatomer og ett oksygenatom.', p: 8 },
+      { q: 'Hvilken ladning har elektronene?', a: ['Negativ', 'Positiv', 'Ingen ladning'], e: 'Protonene er positive, nøytronene er nøytrale og elektronene er negative.', p: 8 },
+      { q: 'Oksygen som brenner karbon i stålovnen, gir ekstra varme. Hva slags reaksjon er det?', a: ['Eksoterm', 'Endoterm', 'Nøytral'], e: 'Reaksjoner med oksygen gir fra seg varme og tilfører energi til ovnen.', p: 41 },
+      { t: 'tf', q: 'Varme får reaksjoner til å gå fortere, fordi atomene beveger seg raskere og treffer hverandre oftere.', ans: true, e: 'Atomene må treffe hverandre med nok fart for å reagere. Varme øker farten.', p: 14 },
+      { q: 'Hvilket stoff gjør slaggen sur?', a: ['SiO₂ (kvarts)', 'CaO (brent kalk)', 'MgO', 'Dolomitt'], e: 'SiO₂ gjør slaggen sur, mens kalk, MgO og dolomitt gjør den basisk.', p: 15 }
     ]
   },
   {
@@ -67,7 +72,12 @@ const ZONES = [
       { h: 1, q: 'Hvilket av disse elementene er vanskelig å analysere med XRF?', a: ['Magnesium (Mg)', 'Jern (Fe)', 'Kobber (Cu)', 'Nikkel (Ni)'], e: 'Lette elementer (Li, Be, Na, Mg, Al, Si, P) er vanskelige. Strålingen deres er så svak at den ikke alltid når fram til detektoren.', p: 20 },
       { h: 1, q: 'Hvorfor er lette elementer vanskelige å måle med XRF?', a: ['Strålingen deres har så lav energi at den ikke alltid når detektoren og blandes med bakgrunnsstøy', 'De er radioaktive', 'De fordamper i prøvepressen', 'De er magnetiske'], e: 'Få protoner og elektroner gir elektroner med lavt energinivå. Den frigitte energien trenger ikke gjennom luften og forsvinner i støyen.', p: 20 },
       { h: 1, q: 'Hvordan lages en slaggmynt til XRF?', a: ['Slagg knuses til pulver, blandes med bindemiddel og presses i en hydraulisk presse', 'Slaggen smeltes og støpes i en form', 'Slaggen freses flat', 'Slaggen løses i vann'], e: 'Mynten må være solid uten hulrom for at resultatet skal bli troverdig.', p: 21 },
-      { q: 'Hvor kommer slaggbitene til analyse vanligvis fra?', a: ['Rester på temperaturstaven etter en temperaturprøve', 'Slaggropa under stålovnen', 'Hvitslaggbingen', 'Kappkibba'], e: 'Slaggrestene som sitter igjen på temperaturstaven knuses i en mølle.', p: 21 }
+      { q: 'Hvor kommer slaggbitene til analyse vanligvis fra?', a: ['Rester på temperaturstaven etter en temperaturprøve', 'Slaggropa under stålovnen', 'Hvitslaggbingen', 'Kappkibba'], e: 'Slaggrestene som sitter igjen på temperaturstaven knuses i en mølle.', p: 21 },
+      { q: 'Hva gjøres med stålprøven før den gnistes?', a: ['Overflaten freses eller slipes, så den blir ren og ny', 'Den males', 'Den knuses til pulver', 'Den varmes opp i ovnen'], e: 'Prøven trenger en ren, ny overflate for at analysen skal bli riktig.', p: 17 },
+      { q: 'Hva bruker vi slaggprøven fra stålovnen til?', a: ['Se på innholdet i slaggen, basisiteten og oksygennivået', 'Bestemme kundens sluttanalyse', 'Måle temperaturen', 'Sjekke radioaktivitet'], e: 'Slaggprøven forteller oss om slaggen og om oksygennivået i stålet.', p: 17 },
+      { q: 'Hvorfor må prøven være flat når den skal analyseres med OES?', a: ['Så det ikke slipper inn luft i kammeret', 'Så den ser fin ut', 'Så den blir magnetisk', 'Så den kjøles raskere'], e: 'Kammeret er fylt med argon, og prøven skal dekke hullet over elektroden helt.', p: 19 },
+      { t: 'tf', q: 'Hvert grunnstoff sender ut lys med sitt eget «fingeravtrykk» (bølgelengder) når det får tilført energi.', ans: true, e: 'Det er derfor OES kan kjenne igjen hvilke grunnstoffer som er i prøven.', p: 17 },
+      { q: 'Hvorfor må slaggmynten være solid, uten hulrom?', a: ['For at analysen skal bli troverdig', 'For at den skal tåle varme', 'For at den skal lede strøm', 'For at den skal kunne gnistes'], e: 'Hulrom i mynten gir et upålitelig resultat.', p: 21 }
     ]
   },
   {
@@ -97,7 +107,12 @@ const ZONES = [
       { q: 'Hva er et overslag?', a: ['Strømmen fra elektrodene går andre veier enn ned i stålbadet', 'Slaggen koker over', 'Elektroden knekker', 'Stål spruter ut av slaggdøra'], e: 'Strømmen kan gå gjennom støv, urent vann, metallstøv eller sprut og ut i stein, mantel, hvelv eller overdel.', p: 24 },
       { h: 1, q: 'Hvorfor støvsuges hvelvet under vedlikeholdsstanser?', a: ['For å redusere faren for overslag i støvet', 'For å spare elektroder', 'For å øke strålevarmen', 'For å få bedre slaggprøver'], e: 'Metallstøv leder strøm og kan gi overslag.', p: 24 },
       { q: 'Hva er den alvorligste følgen av et overslag i vannkjølte elementer (paneler, hvelv, conveyor)?', a: ['Vannlekkasje som kan kreve akutt stans', 'Litt mer elektrodeslitasje', 'Lavere P i stålet', 'Mørkere slagg'], e: 'Den ekstreme varmen kan brenne hull på vannkjølte elementer. Vann i et stålbad er livsfarlig.', p: 24 },
-      { h: 1, t: 'tf', q: 'Vi har sett flere overslag etter at vi skrudde opp vannkjølingen på elektrodene.', ans: true, e: 'Mer vannkjøling reduserer elektrodeforbruket, men har gitt flere overslag.', p: 24 }
+      { h: 1, t: 'tf', q: 'Vi har sett flere overslag etter at vi skrudde opp vannkjølingen på elektrodene.', ans: true, e: 'Mer vannkjøling reduserer elektrodeforbruket, men har gitt flere overslag.', p: 24 },
+      { q: 'Hva skjer med en grafittelektrode som får et kraftig slag?', a: ['Den kan knekke, fordi grafitt er sprøtt', 'Den bøyer seg', 'Ingenting, grafitt er seigt', 'Den smelter'], e: 'Ren grafitt er veldig sprøtt og knekker lett ved sammenstøt.', p: 22 },
+      { q: 'Hva er det som smelter skrapet i stålovnen?', a: ['Energien i lysbuen fra elektrodene', 'Kalken', 'Kjølevannet', 'Static seal'], e: 'Lysbuen er 10 000–30 000 °C i midten.', p: 23 },
+      { q: 'Hvor bygges elektrodene?', a: ['På elektrodebyggeplassen', 'I skraplageret', 'På øseovnen', 'Hos Harsco'], e: 'Produksjonsservice bygger elektrodene på elektrodebyggeplassen.', p: 22 },
+      { q: 'Hva skjer med en elektrode som er slitt kort?', a: ['Den løftes ut og bygges på med en ny bit i toppen', 'Hele elektroden kastes', 'Den limes sammen', 'Den sveises'], e: 'En ferdig elektrode settes inn, og den brukte bygges på med ny nippel og ny bit.', p: 22 },
+      { t: 'tf', q: 'Metallstøv, urent vann og stålsprut kan lede strøm og gi overslag.', ans: true, e: 'Vanlig luft leder strøm dårlig, men støv, sprut og urent vann gjør det.', p: 24 }
     ]
   },
   {
@@ -125,7 +140,13 @@ const ZONES = [
       { q: 'Hva er en vakans?', a: ['Et hull i gitteret der det mangler et atom', 'Et atom av et annet grunnstoff', 'En gassboble', 'En rad med atomer som stopper midt i krystallen'], e: 'Atomene rundt hullet trekker seg litt sammen og gir strekk i gitteret.', p: 28 },
       { h: 1, q: 'Et atom av et annet grunnstoff som tar plassen til et jernatom i gitteret kalles …', a: ['substitusjonelt atom', 'interstitielt atom', 'presipitat', 'vakans'], e: 'Mindre atomer gir strekk i gitteret, større atomer gir sammenpressing.', p: 27 },
       { h: 1, q: 'Hva er en kantdislokasjon?', a: ['En rad med atomer som ikke går gjennom hele krystallen', 'Et hull i gitteret', 'En samling urenheter', 'Grensen mellom to korn'], e: 'Raden stopper underveis og gir både strekk og sammenpressing i gitteret.', p: 28 },
-      { h: 1, q: 'Hvorfor legger legerings- og sporelementer seg lettest på korngrensene?', a: ['Atomene der er bundet mer uregelmessig enn midt i kornet', 'Korngrensene er varmere', 'Korngrensene er magnetiske', 'Det er mer oksygen der'], e: 'Atomene har ulik orientering fra korn til korn. Overgangen blir uregelmessig, og der samler segregeringer seg lettere.', p: 28 }
+      { h: 1, q: 'Hvorfor legger legerings- og sporelementer seg lettest på korngrensene?', a: ['Atomene der er bundet mer uregelmessig enn midt i kornet', 'Korngrensene er varmere', 'Korngrensene er magnetiske', 'Det er mer oksygen der'], e: 'Atomene har ulik orientering fra korn til korn. Overgangen blir uregelmessig, og der samler segregeringer seg lettere.', p: 28 },
+      { q: 'Hva er stål i hovedsak laget av?', a: ['Jern med litt karbon', 'Kobber og tinn', 'Ren karbon', 'Aluminium og silisium'], e: 'Stål er jern med litt karbon. Over 2 % karbon kalles det støpejern.', p: 25 },
+      { q: 'Hva er et korn i stålet?', a: ['En liten krystall i metallet', 'Et sandkorn i slaggen', 'En gassboble', 'En skrapbit'], e: 'Stål består av mange små krystaller som kalles korn.', p: 26 },
+      { q: 'Hva kalles overgangen mellom to korn?', a: ['Korngrense', 'Smeltelinje', 'Slaggkant', 'Nippel'], e: 'Korngrensene ses som mørke streker i mikroskopet.', p: 26 },
+      { t: 'tf', q: 'Ferritt er magnetisk.', ans: true, e: 'Ferritt (BCC) er magnetisk, mens austenitt (FCC) ikke er det.', p: 78 },
+      { q: 'Hvorfor ønsker vi små korn i stålet?', a: ['De gir sterkere og seigere stål', 'De gjør stålet rustfritt', 'De senker smeltepunktet', 'De gjør stålet lettere å smelte'], e: 'Små korn er positivt. Derfor brukes legeringer som hindrer kornvekst.', p: 54 },
+      { q: 'Hva er en pore i stålet?', a: ['En boble av gass eller væske som ble fanget da stålet størknet', 'Et ekstra atom i gitteret', 'En korngrense', 'En type legering'], e: 'Porer kan være tomme eller fylt med gass eller væske.', p: 28 }
     ]
   },
   {
@@ -193,7 +214,11 @@ const ZONES = [
       { q: 'Hva blir resultatet når skrapet lastes tett på conveyoren?', a: ['Lavere conveyorhastighet, lengre forvarming og mindre fukt inn i ovnen', 'Høyere conveyorhastighet', 'Mer is og snø i ovnen', 'Mer elektrodeslitasje'], e: 'Hastigheten styres av tonn inn og kWh. Tett lasting gjør at skrapet ligger lenger i forvarmingen.', p: 40 },
       { q: 'Hvorfor går lastingen tregere med «lett skrap» (tynne plater, hulrom)?', a: ['Magneten får dårligere kontakt, så hvert løft gir lite vekt', 'Det er radioaktivt', 'Det smelter på conveyoren', 'Det er for tungt'], e: 'Man bruker mye tid på å laste lite vekt, og lastingen havner på etterskudd.', p: 40 },
       { q: 'Hva kan skje hvis skrapet lastes for høyt på conveyoren?', a: ['Skrapbiter kan sette seg fast', 'Skrapet blir umagnetisk', 'Conveyoren går fortere', 'Ingenting'], e: 'Skrap som er lastet for høyt, kan sette seg fast flere steder på veien inn til ovnen, blant annet i forvarmingsdelen. Lastehøyden må derfor ikke bli for høy, selv om skrapet skal ligge tett.', p: 40 },
-      { h: 1, q: 'Hvordan er hoodene i forvarmingsdelen bygget?', a: ['Vannkjølte og sprøytet med ildfastmasse', 'Av ren grafitt', 'Av tre', 'Uisolert stål'], e: 'Hoodene tåler avgass på rundt 800–1200 °C.', p: 39 }
+      { h: 1, q: 'Hvordan er hoodene i forvarmingsdelen bygget?', a: ['Vannkjølte og sprøytet med ildfastmasse', 'Av ren grafitt', 'Av tre', 'Uisolert stål'], e: 'Hoodene tåler avgass på rundt 800–1200 °C.', p: 39 },
+      { q: 'Hva skjer med vann, is og snø i skrapet i forvarmingsdelen?', a: ['Det smelter og fordamper før skrapet kommer til ovnen', 'Det fryser fast', 'Det blir med inn i ovnen', 'Det sorteres ut med magnet'], e: 'Forvarmingen varmer skrapet, smelter is og snø og fordamper vann.', p: 39 },
+      { q: 'Hvorfor skal skrapkassene helst tømmes én og én etter tur?', a: ['Hver kasse er lastet etter resept for én bestemt kvalitet', 'For å spare strøm', 'Fordi krana bare kan ta én kasse om dagen', 'Det har ingen betydning'], e: 'En kasse tilsvarer en charge med en bestemt kvalitet.', p: 40 },
+      { q: 'Hvor går avgassen fra stålovnen etter forvarmingsdelen?', a: ['Til renseanlegget', 'Rett ut i hallen', 'Ned i øsa', 'Til skraplageret'], e: 'Utslippene ledes gjennom forvarmingsdelen og ut i renseanlegget.', p: 39 },
+      { t: 'tf', q: 'En jevn conveyorhastighet gjør det lettere å kjøre stålovnen stabilt og gir jevnere slitasje på ildfasten.', ans: true, e: 'Jevn kjøring gir stabil strøm og temperatur, og færre plutselige temperaturtopper.', p: 40 }
     ]
   },
   {
@@ -232,7 +257,10 @@ const ZONES = [
       { q: 'Hvorfor skal det slagges av FØR temperaturen økes før tapping?', a: ['Ellers kan fosforet reagere tilbake til stålet (fosforbom)', 'For å spare kalk', 'Fordi slaggen er magnetisk', 'For å øke FeO'], e: 'Ufullstendig avslagging betyr at det er for mye fosfor igjen i ovnen.', p: 47 },
       { h: 1, q: 'Kjører man stålovnen med både kalk og dolomitt, havner man i …', a: ['slaggstrategi 2', 'slaggstrategi 1', 'slaggstrategi 3', 'ingen strategi'], e: 'Bare brent kalk gir strategi 1, mens tilsats av dolomitt gir strategi 2. Strategi 2 er minst følsom for endringer i FeO.', p: 48 },
       { q: 'Hvorfor vil vi ikke ha med stålovnsslagg over til øseovnen?', a: ['Fosfor kan reagere tilbake, og oksygenet i slaggen spiser legeringene', 'Den er for kald', 'Den er for basisk', 'Den gjør stålet magnetisk'], e: 'Operatørene på øseovnen må da bruke lang tid og mye legering for å treffe kjemien.', p: 48 },
-      { h: 1, t: 'order', q: 'Sett avfosforeringen i riktig rekkefølge:', items: ['P i stålet reagerer med O/FeO', 'P₂O₅ dannes og går opp i slaggen', 'CaO binder fosforet i slaggen', 'Avslagging fjerner fosforet fra ovnen'], e: 'Reaksjonene 12 og 13 skjer først, så binder CaO fosforet (reaksjon 14), og til slutt slagges det av.', p: 46 }
+      { h: 1, t: 'order', q: 'Sett avfosforeringen i riktig rekkefølge:', items: ['P i stålet reagerer med O/FeO', 'P₂O₅ dannes og går opp i slaggen', 'CaO binder fosforet i slaggen', 'Avslagging fjerner fosforet fra ovnen'], e: 'Reaksjonene 12 og 13 skjer først, så binder CaO fosforet (reaksjon 14), og til slutt slagges det av.', p: 46 },
+      { q: 'Hva skjer under avslagging på stålovnen?', a: ['Ovnen tippes, så slaggen renner ut gjennom slaggdøra', 'Elektrodene byttes', 'Stålet tappes i øsa', 'Kalk blåses inn'], e: 'Ovnen tippes mot slaggdøra og skraphallen når chargen skal slagges av.', p: 41 },
+      { q: 'Hvor kommer SiO₂, Al₂O₃ og MnO i stålovnsslaggen hovedsakelig fra?', a: ['Fra skrapet', 'Fra elektrodene', 'Fra kjølevannet', 'Fra kalksteinen i fjellet'], e: 'Slaggen er mest kalk og dolomitt. Resten av oksidene kommer inn med skrapet.', p: 45 },
+      { q: 'Hva er skumslagg?', a: ['En luftig slagg full av gassbobler som dekker lysbuen', 'Slagg som har frosset', 'Slagg med mye vann i', 'Hvitslagg fra øseovnen'], e: 'Karbon og oksygen lager CO-gass som får slaggen til å skumme.', p: 42 }
     ]
   },
   {
@@ -259,7 +287,12 @@ const ZONES = [
       { h: 1, q: 'På hvilke kvaliteter tilsettes aluminiumspyramider ved tapping?', a: ['Særlig kvaliteter med lav maksgrense på silisium', 'Alle kvaliteter', 'Kvaliteter med høyt fosfor', 'Kvaliteter med høyt kobber'], e: 'Al tetter stålet uten å gi mer Si.', p: 49 },
       { q: 'Hvilken gass får stålet til å «koke» i øsa?', a: ['CO-gass fra karbon som reagerer med oksygen', 'Argon', 'Nitrogen', 'Helium'], e: 'Koking kan komme av mye karbon, fukt eller vann, eller stålovnsslagg med høyt O-innhold.', p: 49 },
       { h: 1, q: 'Hva er drepersiloen?', a: ['En silo for raskt å tilsette f.eks. FeSi i øsa når den koker', 'En silo med kalk til stålovnen', 'Siloen til resirkulert magnesitt', 'En silo med sand til tappehullet'], e: 'Tilsatsen reagerer med oksygenet før karbonet gjør det, og gassdannelsen går ned.', p: 107 },
-      { t: 'tf', q: 'Bevegelse i et stålbad (vogner, kraner) kan sette i gang en kokereaksjon.', ans: true, e: 'Derfor skal man alltid være forsiktig der øser med stål er i bevegelse.', p: 49 }
+      { t: 'tf', q: 'Bevegelse i et stålbad (vogner, kraner) kan sette i gang en kokereaksjon.', ans: true, e: 'Derfor skal man alltid være forsiktig der øser med stål er i bevegelse.', p: 49 },
+      { q: 'Hva betyr det å tappe?', a: ['Å helle stålet fra stålovnen over i en øse', 'Å helle ut slaggen', 'Å kutte emnene', 'Å tømme øsa for slagg'], e: 'Ovnen tippes mot øsedørken, og stålet renner ned i øsa.', p: 41 },
+      { q: 'Hvorfor må stålet være varmt nok når det tappes?', a: ['Så det ikke dannes skoller i øsa, og så spylingen på øseovnen virker', 'Så slaggen blir grønn', 'For å spare elektroder', 'For å fjerne kobber'], e: 'Særlig nye eller kalde øser trenger varmt nok stål.', p: 48 },
+      { q: 'Hva kan føre til kok i øsa?', a: ['Mye karbon som reagerer med oksygen, eller vann og fukt', 'For mye argon', 'For lite strøm', 'For mye finkalk'], e: 'Reaksjonen lager CO-gass som får stålet til å boble og koke.', p: 49 },
+      { q: 'Hva bør du gjøre når øser med stål flyttes med kran eller vogn?', a: ['Holde avstand og være forsiktig', 'Gå nærmere for å følge med', 'Kaste vann på øsa', 'Ingenting spesielt'], e: 'Bevegelse i badet kan sette i gang en kokereaksjon med sprut og brann.', p: 49 },
+      { t: 'tf', q: 'Temperaturen i øsa holder seg stabil så lenge øsa står i ro.', ans: false, e: 'Den faller med ca. 1,3 °C per minutt.', p: 48 }
     ]
   },
   {
@@ -294,7 +327,13 @@ const ZONES = [
       { h: 1, q: 'Hvorfor tilsettes manganmetall på øseovnen?', a: ['For å øke nitrogennivået (inneholder ca. 7 % N)', 'For å fjerne nitrogen', 'For å senke Mn', 'For å fjerne svovel'], e: 'Det er sjelden et krav og brukes bare på noen få kvaliteter.', p: 53 },
       { h: 1, q: 'Hva må du passe ekstra på med FeCr?', a: ['Den kan inneholde opptil 8 % karbon', 'Den inneholder bly', 'Den er radioaktiv', 'Den gir mye fosfor'], e: 'FeCr har ca. 60 % Cr. Karboninngangen må tas med i beregningen.', p: 54 },
       { h: 1, q: 'Hvordan tilsettes FeTi per 2023?', a: ['Som sekker direkte i øseovnen', 'Fra silo', 'Som tråd', 'På stålovnen'], e: 'FeTi (~70 % Ti) reagerer raskt med oksygen og trenger godt tettet stål for å få inngang.', p: 54 },
-      { h: 1, q: 'Hva er Ti-innholdet i FeTi?', a: ['Ca. 70 %', 'Ca. 18 %', 'Ca. 30 %', 'Ca. 95 %'], e: 'Til sammenligning: FeV ~80 %, FeNb ~65 % og FeB ~18 %.', p: 54 }
+      { h: 1, q: 'Hva er Ti-innholdet i FeTi?', a: ['Ca. 70 %', 'Ca. 18 %', 'Ca. 30 %', 'Ca. 95 %'], e: 'Til sammenligning: FeV ~80 %, FeNb ~65 % og FeB ~18 %.', p: 54 },
+      { q: 'Hva gjør kalk med slaggen på øseovnen?', a: ['Fanger svovel, men gjør slaggen stivere', 'Gjør slaggen tynnere', 'Fjerner kobber', 'Gjør slaggen sur'], e: 'Derfor trenger vi alumet eller flusspat for å tynne slaggen igjen.', p: 51 },
+      { q: 'Hva betyr «Fe» i navn som FeSi, FeMn og FeV?', a: ['Jern: legeringen er jern blandet med et annet stoff', 'Fosfor', 'Fluor', 'At legeringen er flytende'], e: 'FeSi er ferrosilisium, altså jern og silisium.', p: 50 },
+      { q: 'Hvilket stoff legerer vi stålet med når vi tilsetter FeV?', a: ['Vanadium', 'Vann', 'Wolfram', 'Bare jern'], e: 'FeV inneholder rundt 80 % vanadium.', p: 54 },
+      { q: 'Hvilke tilsatser tynner ut slaggen på øseovnen?', a: ['Alumet og flusspat', 'Kalk og dolomitt', 'Kull og antrasitt', 'FeSi og SiMn'], e: 'Flusspat (CaF₂) virker sterkest, men tærer mer på øsesteinen.', p: 52 },
+      { t: 'tf', q: 'FeMn og FeCr gir også litt karbon i stålet.', ans: true, e: 'FeMn har opptil 7 % C og FeCr opptil 8 % C. Det må regnes med.', p: 53 },
+      { q: 'Hva er trådmating godt egnet til?', a: ['Nøyaktige tilsatser, f.eks. karbontråd og CaSi-tråd', 'Å måle temperaturen', 'Å fjerne slagg', 'Å spyle med argon'], e: 'Tråden går rett ned i stålet, så tilsatsen blir nøyaktig.', p: 50 }
     ]
   },
   {
@@ -328,7 +367,12 @@ const ZONES = [
       { q: 'Hvorfor kreves sertifisert støvmaske ved høye Pb-nivåer i chargen?', a: ['Gass og støv med bly er svært helseskadelig', 'Bly lukter vondt', 'Bly er radioaktivt', 'Bly gir kalkstøv'], e: 'Bly senker også duktiliteten ved varmvalsing, men brukes i automatstål på grunn av den smørende effekten.', p: 57 },
       { t: 'tf', q: 'Store korn er positivt for styrken og duktiliteten til stålet.', ans: false, e: 'Det er motsatt: små korn er positivt. Partikler som hindrer kornvekst er derfor gunstige.', p: 54 },
       { q: 'Hva er seighet?', a: ['Stålets evne til å ikke gå til brudd ved deformering: høy styrke og høy duktilitet', 'Det samme som hardhet', 'Hvor rustfritt stålet er', 'Hvor tungt stålet er'], e: 'Stål kan være hardt uten å være seigt, og da knuses det i stedet for å deformeres.', p: 54 },
-      { h: 1, q: 'Hva gjør krom (Cr) med stålet?', a: ['Brukes i rustfritt stål, men for mye kan gi sprøhet og sprekker rundt sveiser', 'Gjør det kaldsprøtt', 'Fjerner svovel', 'Gjør det umagnetisk'], e: 'Krom tilsettes normalt bare kvaliteter som skal være rustfrie. Hos oss kommer det mest inn med skrapet.', p: 56 }
+      { h: 1, q: 'Hva gjør krom (Cr) med stålet?', a: ['Brukes i rustfritt stål, men for mye kan gi sprøhet og sprekker rundt sveiser', 'Gjør det kaldsprøtt', 'Fjerner svovel', 'Gjør det umagnetisk'], e: 'Krom tilsettes normalt bare kvaliteter som skal være rustfrie. Hos oss kommer det mest inn med skrapet.', p: 56 },
+      { q: 'Hva skjer med stålet når karboninnholdet øker?', a: ['Det blir hardere og sterkere, men sprøere', 'Det blir mykere', 'Det blir rustfritt', 'Det blir lettere å sveise'], e: 'Over ca. 0,3 % C blir stålet også vanskeligere å sveise.', p: 55 },
+      { q: 'Hvilke tre grunnstoffer bruker vi til å tette stålet (fjerne oksygen)?', a: ['Silisium, mangan og aluminium', 'Kobber, nikkel og tinn', 'Fosfor, svovel og nitrogen', 'Bly, tinn og kobber'], e: 'De binder oksygenet bedre enn karbon gjør.', p: 58 },
+      { q: 'Hvor kommer nitrogenet i stålet hovedsakelig fra?', a: ['Fra lufta', 'Fra kalken', 'Fra elektrodene', 'Fra kjølevannet'], e: 'Slagg og dekkmiddel reduserer hvor mye nitrogen stålet tar opp fra lufta.', p: 56 },
+      { t: 'tf', q: 'Fosfor og svovel er stoffer vi helst vil ha lite av i stålet.', ans: true, e: 'Fosfor gir kaldsprøhet, og svovel gir sprekker ved varmvalsing.', p: 56 },
+      { q: 'Hva betyr det at stålet har høy duktilitet?', a: ['Det kan bøyes uten å sprekke', 'Det er veldig hardt', 'Det er magnetisk', 'Det leder strøm godt'], e: 'Høy duktilitet er viktig for stål som skal bøyes og formes.', p: 54 }
     ]
   },
   {
@@ -371,7 +415,10 @@ const ZONES = [
       { h: 1, q: 'Hvilken RE3-variant er knyttet til «surface hot shortness»?', a: ['Cu + 10·Sn', 'Ni + Cu', 'Cr + Ni + Cu + Mo + Sn', 'Cu + Ni + Cr'], e: 'Kobber og tinn er de verste og bør holdes lave.', p: 63 },
       { h: 1, q: 'Hvorfor er det viktig å holde Mn/S-forholdet høyt?', a: ['Mn binder S og hindrer at FeS gir oppsprekking', 'For å få mer slagg', 'For å senke CE2', 'For å fjerne nitrogen'], e: 'MnS gir ønskede effekter i ferdig stål, mens FeS gir sprekker.', p: 64 },
       { h: 1, q: 'Hva vil vi som regel ha Mn/Si-forholdet over?', a: ['3', '0,5', '10', '1,25'], e: 'Et høyt Mn/Si-forhold gir mindre slagg i kokillene, og det hjelper utstøpningen.', p: 64 },
-      { h: 1, q: 'Hvorfor skal B/N-forholdet være under 1 på noen høykarbonkvaliteter?', a: ['Ellers binder B seg til N (BN), og effekten av bor alene blir redusert', 'For å få mer nitrogen i stålet', 'For å senke likvidus', 'For å unngå fosforbom'], e: 'B binder seg lettere til N enn Al gjør. Da forsvinner hardhetseffekten av bor.', p: 64 }
+      { h: 1, q: 'Hvorfor skal B/N-forholdet være under 1 på noen høykarbonkvaliteter?', a: ['Ellers binder B seg til N (BN), og effekten av bor alene blir redusert', 'For å få mer nitrogen i stålet', 'For å senke likvidus', 'For å unngå fosforbom'], e: 'B binder seg lettere til N enn Al gjør. Da forsvinner hardhetseffekten av bor.', p: 64 },
+      { q: 'Hvor blåses spylegassen inn i øsa?', a: ['Gjennom spylesteinen i bunnen', 'Gjennom elektrodene', 'Gjennom slaggdøra', 'Gjennom tappehullet'], e: 'Spylesteinen er porøs, så gassen kan boble opp gjennom stålet.', p: 67 },
+      { q: 'Hvorfor tetter vi stålet før utstøping?', a: ['For å hindre gassbobler (porer) når stålet størkner', 'For å gjøre det kaldere', 'For å øke fosforet', 'For å gjøre det magnetisk'], e: 'Løst oksygen reagerer med karbon og lager CO-bobler under størkningen.', p: 58 },
+      { q: 'Hva betyr hvit slagg på øseovnen?', a: ['Mye kalk og lite oksygen: en god slagg', 'Mye jernoksid', 'Mye mangan', 'At slaggen er for kald'], e: 'Svart slagg betyr mye FeO, og grønn betyr mye MnO.', p: 59 }
     ]
   },
   {
@@ -404,7 +451,12 @@ const ZONES = [
       { h: 1, q: 'Hvorfor brukes CO-gass i øsetørkerne, selv om effekten er dårligere enn med olje?', a: ['Den koster ca. ⅓ av olje og er mer bærekraftig', 'Den er varmere', 'Den lager mindre støv i hallen', 'Den kommer fra stålovnen'], e: 'CO-gassen leveres av MIP og er blant annet et biprodukt fra Ferroglobe.', p: 70 },
       { h: 1, q: 'Hvilken øsebrenner er den eneste kombibrenneren (CO-gass eller olje)?', a: ['Brenner 5', 'Brenner 1', 'Brenner 6', 'Den liggende brenneren'], e: 'Brenner 1 bruker bare CO, brenner 6 og den liggende bare olje.', p: 70 },
       { q: 'Hvordan skal en nymurt øse varmes opp først?', a: ['Stående, slik at ildfasten tørker og herder før øsa tippes', 'Liggende med en gang', 'Med stål direkte', 'I stålovnen'], e: 'Helst i brenner 1 eller 5, som har program. Liggende tørker er siste steg før produksjon.', p: 70 },
-      { t: 'order', q: 'Sett runden til øsa i riktig rekkefølge:', items: ['Tapping på stålovnen', 'Øseovnen', 'Utstøpning i tårnet', 'Tømme slaggrester i gropa', 'Brenne tappemekanismen ren', 'Kaste sand i tappehullet'], e: 'Rødt løp med full øse, så gult løp med tom øse som klargjøres til ny tapping.', p: 69 }
+      { t: 'order', q: 'Sett runden til øsa i riktig rekkefølge:', items: ['Tapping på stålovnen', 'Øseovnen', 'Utstøpning i tårnet', 'Tømme slaggrester i gropa', 'Brenne tappemekanismen ren', 'Kaste sand i tappehullet'], e: 'Rødt løp med full øse, så gult løp med tom øse som klargjøres til ny tapping.', p: 69 },
+      { q: 'Hva er en øse?', a: ['En stor stålbøtte, foret med ildfast stein, som frakter flytende stål', 'En type kran', 'En ovn som smelter skrap', 'En silo for kalk'], e: 'Øsa tar imot stålet ved tapping og frakter det til øseovnen og strengen.', p: 65 },
+      { q: 'Hvor går øsa etter øseovnen?', a: ['Til strengen (tårnet) for utstøping', 'Tilbake til stålovnen', 'Til skraplageret', 'Rett til øsebrenneren'], e: 'Fra tårnet kommer den tomme øsa tilbake til dørken for klargjøring.', p: 65 },
+      { q: 'Hva brukes glideplatene i bunnen av øsa til?', a: ['Å åpne og stenge strålen av stål ut av øsa', 'Å spyle med argon', 'Å måle temperaturen', 'Å holde slaggen igjen i stålovnen'], e: 'Når platene skyves slik at hullene ikke overlapper, er øsa stengt.', p: 68 },
+      { t: 'tf', q: 'Tomme øser bør holdes varme under brennere før de brukes igjen.', ans: true, e: 'Det hindrer temperatursjokk i steinen, skoller og fukt i øsa.', p: 70 },
+      { q: 'Hva skjer med øsa etter at den er tømt i tårnet?', a: ['Den kommer tilbake til dørken, tømmes for slagg og klargjøres', 'Den kastes', 'Den sendes til skraplageret', 'Den fylles med vann'], e: 'Tappemekanismen brennes ren, og det kastes sand i tappehullet.', p: 69 }
     ]
   },
   {
@@ -445,7 +497,9 @@ const ZONES = [
       { q: 'Hva er oftest årsaken til groing i utløpet eller fordeleren?', a: ['For mye aluminium (fast Al₂O₃)', 'For mye kobber', 'For mye argon', 'For lite kalk på stålovnen'], e: 'CaSi motvirker groing, fordi Ca binder seg til Al₂O₃ og gjør det flytende.', p: 85 },
       { h: 1, q: 'Hvor ofte skiftes sliteforingen i fordeleren?', a: ['Mellom hver sekvens (maks 30 timer)', 'Hver charge', 'Etter flere måneder', 'Aldri'], e: 'Bakforingen holder i flere måneder.', p: 92 },
       { t: 'order', q: 'Sett delene på strengen i riktig rekkefølge:', items: ['Fordeler', 'Kokille', 'Kjølesone og drivrettere', 'Brennere (kutting)', 'Venderista'], e: 'Fordeler → kokille (skallet størkner) → kjølesone/drivrettere → brennere → venderista.', p: 74 },
-      { h: 1, t: 'order', q: 'Sett avkjølingen av et stål med lite karbon (som TP26) i riktig rekkefølge:', items: ['Flytende stål (L)', 'Austenitt (γ)', 'Ferritt dannes på korngrensene', 'Resten av austenitten blir perlitt'], e: 'Under den horisontale linjen i fasediagrammet blir resten av austenitten til perlitt.', p: 79 }
+      { h: 1, t: 'order', q: 'Sett avkjølingen av et stål med lite karbon (som TP26) i riktig rekkefølge:', items: ['Flytende stål (L)', 'Austenitt (γ)', 'Ferritt dannes på korngrensene', 'Resten av austenitten blir perlitt'], e: 'Under den horisontale linjen i fasediagrammet blir resten av austenitten til perlitt.', p: 79 },
+      { q: 'Hva er et emne?', a: ['En lang, firkantet stålstang som støpes på strengen', 'En stålprøve til laben', 'En type slagg', 'En øse'], e: 'Emner heter «billets» på engelsk.', p: 71 },
+      { q: 'Hvor går de fleste emnene etter strengen?', a: ['Til valseverket', 'Tilbake til stålovnen', 'Til skraplageret', 'På deponi'], e: 'Noen emner går også til eksterne kunder.', p: 71 }
     ]
   },
   {
@@ -479,7 +533,12 @@ const ZONES = [
       { q: 'Hvilken slitasje er den vanligste på ildfaststeinen?', a: ['Erosjon', 'Lysbuesår', 'Oppløsning', 'Oksidasjon'], e: 'Stål og slagg i bevegelse sliter jevnt bort partikler og bindemiddel.', p: 94 },
       { q: 'Hva fører til lysbuesår?', a: ['Lysbuen er dårlig dekket av slagg, så stikkflammer treffer steinen', 'For mye kalk', 'Kaldt skrap', 'For lite oksygen'], e: 'Den varme gassen smelter dype sår i steinen.', p: 94 },
       { h: 1, q: 'Hva skjer ved oksidasjonsslitasje?', a: ['Karbonbindemiddelet reagerer med O eller FeO til CO, og partiklene faller ut', 'Steinen ruster', 'MgO fordamper', 'Steinen blir magnetisk'], e: 'C (ildfast) + O ⇌ CO (g).', p: 94 },
-      { h: 1, q: 'Når får vi oppløsningsslitasje?', a: ['Når slaggen ikke er mettet med MgO og «spiser» MgO fra steinen', 'Når slaggen har for mye MgO', 'Når ovnen er kald', 'Når elektrodene er nye'], e: 'Derfor tilsetter vi dolomitt (MgO) i stålovnen.', p: 95 }
+      { h: 1, q: 'Når får vi oppløsningsslitasje?', a: ['Når slaggen ikke er mettet med MgO og «spiser» MgO fra steinen', 'Når slaggen har for mye MgO', 'Når ovnen er kald', 'Når elektrodene er nye'], e: 'Derfor tilsetter vi dolomitt (MgO) i stålovnen.', p: 95 },
+      { q: 'Hva er ildfast?', a: ['Stein og masse som tåler flytende stål og høy varme', 'En type brannslukker', 'En legering', 'Kjølevann'], e: 'Ildfasten beskytter stålmantelen på ovner, øser og fordelere.', p: 86 },
+      { q: 'Hva kan skje hvis ildfasten i ovnen slites for langt ned?', a: ['Det kan gå hull på stålmantelen', 'Ingenting', 'Stålet blir renere', 'Elektrodene varer lenger'], e: 'Derfor mures ovnen opp på nytt med jevne mellomrom.', p: 41 },
+      { q: 'Hva brukes sprøytemasse til?', a: ['Å reparere ovnsveggen underveis i drift', 'Å smøre kokillene', 'Å dekke fordeleren', 'Å kjøle elektrodene'], e: 'Det sprøytes mer og oftere mot slutten av pottens levetid.', p: 88 },
+      { t: 'tf', q: 'Det er vanlig at ovnssteinen har flere typer slitasje samtidig.', ans: true, e: 'Erosjon, lysbuesår, oksidasjon og oppløsning kan skje samtidig.', p: 95 },
+      { q: 'Hvorfor slites felt 3 i stålovnen minst?', a: ['Det ligger lengst unna elektrodene og nærmest det kalde skrapet fra conveyoren', 'Det har tykkere stein', 'Det får ikke kalk', 'Det er tilfeldig'], e: 'Felt 1 og 2 ligger nærmere elektrodene og slites mest.', p: 94 }
     ]
   },
   {
@@ -507,7 +566,13 @@ const ZONES = [
       { q: 'Omtrent hvor mye av vekten i kappkibba er glødeskall?', a: ['Ca. 50 %', 'Ca. 5 %', 'Ca. 90 %', 'Ingenting'], e: 'Kappkibba samler start- og endekutt og glødeskall under brennerne.', p: 100 },
       { h: 1, q: 'Hva skjer med glødeskallet som glødeskallskruen siler ut av vannet?', a: ['Det selges som produkt til en ekstern kunde', 'Det deponeres', 'Det brukes som dekkmiddel', 'Det går i stålovnen'], e: 'Det fraktes på bånd til dørken, hentes og veies.', p: 101 },
       { q: 'Hva skjer med rødstøvet fra renseanlegget?', a: ['Det veies og selges til en ekstern kunde', 'Det deponeres sammen med vanlig støv', 'Det tilsettes i stålovnen', 'Det brukes som sand'], e: 'Vanlig støv fra verket støvsuges av Miljøteknikk og deponeres.', p: 105 },
-      { t: 'tf', q: 'Skoller fra tømming av øser og stålovn havner til slutt i skraplageret vårt.', ans: true, e: 'Harsco henter, veier og prosesserer dem, og så går de tilbake til skraplageret.', p: 96 }
+      { t: 'tf', q: 'Skoller fra tømming av øser og stålovn havner til slutt i skraplageret vårt.', ans: true, e: 'Harsco henter, veier og prosesserer dem, og så går de tilbake til skraplageret.', p: 96 },
+      { q: 'Hva er skoller?', a: ['Størknede stålrester', 'En type slagg', 'Ildfast stein', 'Gamle elektroder'], e: 'Skoller kommer fra øser, stålovnen og fordelerne, og går tilbake til skraplageret.', p: 96 },
+      { q: 'Hvor havner stålbitene som Harsco sorterer ut av slaggen?', a: ['I skraplageret vårt, etter veiing', 'På deponi', 'I renseanlegget', 'I øsebrenneren'], e: 'Stålet veies over bilvekta og legges i skraplageret.', p: 97 },
+      { q: 'Hvor veies biproduktene fra stålverket?', a: ['Over bilvekta ved skraplageret', 'På laben', 'På øseovnen', 'De veies ikke'], e: 'Biproduktene har egne veiekoder.', p: 96 },
+      { q: 'Hva er glødeskall?', a: ['Flak av oksidert stål som faller av emnene', 'En type kalk', 'Gammel ildfaststein', 'Slagg fra stålovnen'], e: 'Glødeskallet samles opp og selges.', p: 101 },
+      { q: 'Hvor kommer hvitslaggen fra?', a: ['Fra øseovnen', 'Fra stålovnen', 'Fra skraplageret', 'Fra renseanlegget'], e: 'Svartslaggen kommer fra stålovnen.', p: 97 },
+      { t: 'tf', q: 'Gammel ildfaststein fra øsene kastes på deponi.', ans: false, e: 'Den samles i big bags og kjøres inn i stålovnen via conveyoren.', p: 98 }
     ]
   }
 ];

@@ -359,13 +359,36 @@
   function load() {
     try { return JSON.parse(localStorage.getItem(SAVE_KEY)) || {}; } catch (e) { return {}; }
   }
-  const P = Object.assign({ zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {}, level: 'ny' }, load());
+  const P = Object.assign({ zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {}, level: 'ny', stats: {} }, load());
   if (!LEVELS[P.level]) P.level = 'ny';
   function save() {
     try { localStorage.setItem(SAVE_KEY, JSON.stringify(P)); } catch (e) { /* privat modus o.l. */ }
   }
   function markWrong(id) { if (!P.wrong.includes(id)) P.wrong.push(id); }
   function markRight(id) { P.wrong = P.wrong.filter(x => x !== id); }
+  // Statistikk per spørsmål: n = antall ganger sett, r = riktige på rad, t = sist sett
+  function record(id, ok) {
+    const st = P.stats[id] || { n: 0, r: 0 };
+    st.n++;
+    st.r = ok ? st.r + 1 : 0;
+    st.t = Date.now();
+    P.stats[id] = st;
+    if (ok) markRight(id); else markWrong(id);
+  }
+  const MASTERED = 2;  // riktige på rad før et spørsmål regnes som mestret
+  const isMastered = id => ((P.stats[id] || {}).r || 0) >= MASTERED;
+  // Smart trekking: først det du har bommet på, så det du ikke har sett,
+  // så det du ikke har mestret ennå, og til slutt det du kan. Innen hver gruppe kommer det
+  // som er lengst siden du så, først.
+  function pickQuestions(pool, n, keepOrder) {
+    const tier = q => P.wrong.includes(q.id) ? 0 : !P.stats[q.id] ? 1 : isMastered(q.id) ? 3 : 2;
+    const ranked = shuffle(pool)
+      .map(q => ({ q, k: tier(q), t: (P.stats[q.id] || {}).t || 0 }))
+      .sort((a, b) => a.k - b.k || a.t - b.t);
+    const chosen = ranked.slice(0, n).map(x => x.q);
+    return keepOrder ? chosen : shuffle(chosen);
+  }
+  const masteredCount = qs => qs.filter(q => isMastered(q.id)).length;
 
   // Hjelpere
   const $app = document.getElementById('app');
@@ -560,7 +583,7 @@
           return `<button class="station ${s ? 'done' : ''}" data-act="zone" data-id="${z.id}">
             <span class="badge">${z.icon}</span>
             <span class="info"><span class="name">${i + 1}. ${z.name}</span>
-              <span class="tags">${read ? '<span class="tag ok">📖 Lest</span>' : '<span class="tag">📖 Ikke lest</span>'}${zp.expert ? `<span class="tag ok">🔥 Erfaren ${'★'.repeat(zp.expert)}</span>` : ''}</span></span>
+              <span class="tags">${read ? '<span class="tag ok">📖 Lest</span>' : '<span class="tag">📖 Ikke lest</span>'}${(() => { const pool = levelPool(z.qs), m = masteredCount(pool); return m ? `<span class="tag ${m === pool.length ? 'ok' : ''}">✅ ${m}/${pool.length} mestret</span>` : ''; })()}${zp.expert ? `<span class="tag ok">🔥 Erfaren ${'★'.repeat(zp.expert)}</span>` : ''}</span></span>
             <span class="stars">${starsHtml(s)}</span>
           </button>`;
         }).join('')}
@@ -583,14 +606,21 @@
     const z = ZONE_BY_ID[zid];
     const zp = P.zones[zid] || {};
     const read = P.lessons[zid];
-    const n = Math.min(L().round, levelPool(z.qs).length);
+    const pool = levelPool(z.qs);
+    const n = Math.min(L().round, pool.length);
+    const m = masteredCount(pool);
     $app.innerHTML = `
       <button class="back" data-act="home">← Til kartet</button>
       <div class="intro-head">
         <span class="big">${z.icon}</span>
         <div><h1>${z.name}</h1><div class="meta">Kompendiet ${z.pages} · <span class="stars">${starsHtml(zp.stars || 0)}</span></div></div>
       </div>
-      <div class="big-actions">
+      <div class="rank" style="margin-top:0">
+        <div class="rank-row"><span class="rank-title">✅ ${m} av ${pool.length} spørsmål mestret</span><span class="rank-next">${L().label}</span></div>
+        <div class="meter"><i style="width:${pool.length ? m / pool.length * 100 : 0}%"></i></div>
+        <p class="tip" style="margin:8px 0 0">Et spørsmål er mestret når du har svart riktig på det ${MASTERED} ganger på rad. Øvingen gir deg først det du har bommet på og det du ikke har sett.</p>
+      </div>
+      <div class="big-actions" style="margin-top:12px">
         <button class="btn ${read ? '' : 'primary'}" data-act="lesson" data-id="${z.id}">📖 ${read ? 'Les igjen' : 'Lær først'}<small>${LESSONS[z.id].length} korte kort med sjekkspørsmål</small></button>
         <button class="btn ${read ? 'primary' : ''}" data-act="start-zone" data-id="${z.id}">🎯 Øv<small>${n} spørsmål · ${L().label}</small></button>
       </div>
@@ -641,7 +671,7 @@
       const q = BY_ID[cards[i].check];
       mountQuestion(host, q, {
         tone: 'learn', hint: false, focus: false,
-        onDone: ok => { if (ok) markRight(q.id); save(); }
+        onDone: ok => { record(q.id, ok); save(); }
       });
     }
     scrollTop();
@@ -670,10 +700,10 @@
   function startRound(mode, opts = {}) {
     const lv = L();
     let list;
-    if (mode === 'zone') list = shuffle(levelPool(ZONE_BY_ID[opts.zone].qs)).slice(0, lv.round);
-    else if (mode === 'final') list = shuffle(levelPool(ALL)).slice(0, lv.final);
+    if (mode === 'zone') list = pickQuestions(levelPool(ZONE_BY_ID[opts.zone].qs), lv.round);
+    else if (mode === 'final') list = pickQuestions(levelPool(ALL), lv.final);
     else if (mode === 'retry') list = shuffle(P.wrong.map(id => BY_ID[id]).filter(q => q && (lv.hard || !q.h))).slice(0, lv.round);
-    else if (mode === 'lyn') list = shuffle(levelPool(ALL).filter(q => !q.t || q.t === 'tf'));
+    else if (mode === 'lyn') { const pool = levelPool(ALL).filter(q => !q.t || q.t === 'tf'); list = pickQuestions(pool, pool.length, true); }
     if (!list.length) return renderHome();
     R = {
       mode, zone: opts.zone || null, list, unique: list.length, i: 0,
@@ -754,12 +784,12 @@
       R.bestStreak = Math.max(R.bestStreak, R.streak);
       gain = Math.round((100 + Math.min(R.streak - 1, 5) * 20) * (usedHint ? 0.5 : 1) * (first ? 1 : 0.5));
       R.score += gain;
-      markRight(q.id);
+      record(q.id, true);
     } else {
       R.streak = 0;
       if (R.lives !== Infinity) R.lives--;
       if (first) R.missed.push(q);
-      markWrong(q.id);
+      record(q.id, false);
       if (R.repeat && !R.requeued.has(q.id)) {
         R.requeued.add(q.id);
         R.list.push(q);
@@ -897,7 +927,7 @@
       }
       case 'reset':
         if (confirm('Slette alle stjerner, rekorder, leste leksjoner og feil-listen?')) {
-          Object.assign(P, { zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {} }); save(); renderHome();
+          Object.assign(P, { zones: {}, wrong: [], lynBest: 0, finalBest: 0, lessons: {}, stats: {} }); save(); renderHome();
         }
         break;
     }
