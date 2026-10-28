@@ -219,7 +219,7 @@ const LESSONS = {
     },
     {
       title: 'God lasting',
-      body: `<p>Én kasse er én charge, ca. <b>92 tonn</b>. Skrapet skal ligge <b>tett, men ikke for høyt</b>. En god blanding av store og små biter gjør at båndet kan gå roligere, og da får skrapet bedre tid til å varmes opp.</p>`,
+      body: `<p>Én kasse er én charge, ca. <b>92 tonn</b>. Skrapet skal ligge <b>tett, men ikke for høyt</b>. Er det lastet for høyt, kan biter sette seg fast på veien inn til ovnen. En god blanding av store og små biter gjør at båndet kan gå roligere, og da får skrapet bedre tid til å varmes opp.</p>`,
       check: 'conveyor-7'
     },
     {
